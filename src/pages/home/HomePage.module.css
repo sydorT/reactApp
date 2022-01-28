@@ -1,0 +1,7 @@
+.hero {
+    background-image: url('../../images/hero-bgr.svg');
+    background-position-x: left;
+    background-position-y: 172px;
+    background-repeat: no-repeat;
+    background-size: 313px 581px;
+}

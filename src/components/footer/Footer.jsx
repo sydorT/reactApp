@@ -1,9 +1,11 @@
-import React from 'react';
+import { Container, Stack, IconButton, Link } from '@mui/material';
 
 const Footer = () => {
-  return <div>
-    footer
-  </div>;
+  return <>
+    <Container maxWidth="lg">
+      footer
+    </Container>
+  </>;
 };
 
 export default Footer;

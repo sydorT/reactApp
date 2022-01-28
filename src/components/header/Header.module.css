@@ -11,32 +11,26 @@
 
 .navWrapper {
   display: flex;
-}
-
-.navLink,
-.login {
-  font-size: 15px;
-  font-weight: 500;
-  color: #737373;
+  margin-left: auto;
 }
 
 .nav {
-  margin-right: 130px;
-}
-
-.navLink {
-  color: #232323;
-  margin-left: 32px;
+  margin-right: 6vw;
 }
 
 .separator {
   color: #737373;
-  margin: 0 12px;
 }
 
 .burgerIcon {
   display: none;
   cursor: pointer;
+}
+
+@media (max-width: 1024.98px) {
+  .nav {
+    margin-right: 3vw;
+  }
 }
 
 @media (max-width: 991.98px) {

@@ -1,32 +1,44 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
+import { Container, Stack, IconButton, Link } from '@mui/material';
 
 import Logo from './../../images/logo.svg'
 import BurgerMenu from './../../images/burger-menu.svg'
 
 const Header = () => {
-  return <div className={styles.header}>
-    <Link to={'/'}>
-      <img src={Logo} className={styles.logo} alt='Crowd Marketing' />
-    </Link>
+  const isAuthorized = false;
 
-    <div className={styles.navWrapper}>
-      <div className={styles.nav}>
-        <Link className={styles.navLink} to={'/'}>Новости</Link>
-        <Link className={styles.navLink} to={'/'}>Контакты</Link>
-        <Link className={styles.navLink} to={'/'}>Правила</Link>
+  return <>
+    <Container maxWidth="lg">
+      <div className={styles.header}>
+        <Link href="/">
+          <img src={Logo} className={styles.logo} alt='Crowd Marketing' />
+        </Link>
+
+        <div className={styles.navWrapper}>
+          <div className={styles.nav}>
+            {isAuthorized && (<>
+              <Link href="/" variant="menuLink" color="seconday" underline="hover">Задания</Link>
+              <Link href="/" variant="menuLink" color="seconday" underline="hover">Личный кабинет</Link>
+              </>)}
+            <Link href="/" variant="menuLink" color="seconday" underline="hover">Новости</Link>
+            <Link href="/" variant="menuLink" color="seconday" underline="hover">Контакты</Link>
+            <Link href="/" variant="menuLink" color="seconday" underline="hover">Правила</Link>
+          </div>
+
+          <Stack direction="row" spacing={1.5}>
+            <Link href="/" variant="menuLink" underline="hover">Вход</Link>
+            <span className={styles.separator}>/</span>
+            <Link href="/" variant="menuLink" underline="hover">Регистрация</Link>
+          </Stack>
+        </div>
+
+        <IconButton>
+          <img src={BurgerMenu} className={styles.burgerIcon} alt='' />
+        </IconButton>
       </div>
-
-      <div>
-        <Link to={'/'} className={styles.login}>Вход</Link>
-        <span className={styles.separator}>/</span>
-        <Link to={'/'} className={styles.login}>Регистрация</Link>
-      </div>
-    </div>
-
-    <img src={BurgerMenu} className={styles.burgerIcon} alt='' />
-  </div>;
+    </Container>
+  </>
 };
 
 export default Header;

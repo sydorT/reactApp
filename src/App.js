@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Container maxWidth="lg">
+        <Container maxWidth="false" disableGutters>
           <Header />
           <Routes>
             <Route path='/' exact element={<HomePage /> } />
