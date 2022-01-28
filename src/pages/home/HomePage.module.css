@@ -18,6 +18,9 @@
         max-width: 216px;
         margin: auto;
     }
+    .hero {
+        background-image: none;
+    }
     .hide {
         display: none;
     }

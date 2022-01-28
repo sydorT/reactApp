@@ -27,6 +27,33 @@
   cursor: pointer;
 }
 
+.modalBgr {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../images/mobile-menu-bgr.svg');
+  background-position-x: 0;
+  background-position-y: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.linkMobile {
+  position: relative;
+}
+
+.linkMobile::before {
+  content: '';
+  position: absolute;
+  left: -26px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 2px;
+  background-color: #9C42E2;
+  border-radius: 2px;
+}
+
 @media (max-width: 1024.98px) {
   .nav {
     margin-right: 3vw;
@@ -42,8 +69,8 @@
   }
 }
 
-@media (max-width: 599.98px) {
-  .header {
-    padding: 0 9px;
+@media (max-width: 375.98px) {
+  .modalBgr {
+    background-position-x: -174px;
   }
 }

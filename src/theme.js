@@ -37,8 +37,15 @@ const theme = createTheme({
     menuLink: {
       fontSize: 15,
       fontWeight: 500,
-      color: '#232323',
       marginLeft: 32
+    },
+    menuLinkMobile: {
+      fontSize: 20,
+      fontWeight: 600
+    },
+    menuLinkMobileBlue: {
+      fontSize: 18,
+      fontWeight: 600
     }
   },
   palette: {
@@ -48,7 +55,8 @@ const theme = createTheme({
     secondary: {
       main: '#232323'
     },
-    accent: '#9C42E2'
+    accent: '#9C42E2',
+    link: '#45619D'
   },
   components: {
     MuiButtonBase: {
@@ -61,7 +69,7 @@ const theme = createTheme({
         root: {
           fontSize: '15px',
           fontWeight: 500,
-          padding: '14px 42px',
+          padding: '10px 43px',
           borderRadius: '30px'
         },
       },

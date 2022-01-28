@@ -7,7 +7,7 @@ export default function() {
   return (
     <>
       <div className={styles.hero}>
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{px: {xs: 3}}}>
           <Stack
             direction={{ md: 'row', xs: 'column' }}
             justifyContent='space-between'
@@ -36,7 +36,6 @@ export default function() {
                       fontSize: {
                         md: 36, xs: 28
                       },
-                      textTransform: 'uppercase',
                       fontWeight: 600
                     }}
                   >100K+</Typography>
@@ -53,7 +52,6 @@ export default function() {
                       fontSize: {
                         md: 36, xs: 28
                       },
-                      textTransform: 'uppercase',
                       fontWeight: 600
                     }}
                     >1M+</Typography>
@@ -70,7 +68,6 @@ export default function() {
                       fontSize: {
                         md: 36, xs: 28
                       },
-                      textTransform: 'uppercase',
                       fontWeight: 600
                     }}
                     >2K+</Typography>
