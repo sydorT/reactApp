@@ -6,7 +6,7 @@ const theme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 900,
+      md: 992,
       lg: 1228,
       xl: 1536,
       mobile: 0,
@@ -23,7 +23,11 @@ const theme = createTheme({
       fontWeight: 600,
       lineHeight: '60px',
       color: '#232323',
-      marginBottom: 24
+      marginBottom: 24,
+      '@media (max-width: 599.98px)': {
+        fontSize: 28,
+        lineHeight: '36px',
+      },
     },
     body1: {
       fontSize: 16,

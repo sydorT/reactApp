@@ -1,5 +1,5 @@
 import styles from './HomePage.module.css';
-import { Container, Stack, Button, Typography } from '@mui/material';
+import { Container, Stack, Button, Typography, Box } from '@mui/material';
 
 import HeroImg from './../../images/hero-img.svg'
 
@@ -11,47 +11,78 @@ export default function() {
           <Stack
             direction={{ md: 'row', xs: 'column' }}
             justifyContent='space-between'
-            pt={{md: 17, sm: 5}}
-            pb={{md: 21.5, sm: 5}}
+            pt={{md: 17, xs: 1}}
+            pb={{md: 21.5, xs: 5}}
           >
-            <div>
+            <Box sx={{mt: {md: 0, xs: 4}}}>
               <Typography variant="h2" component="div">
                 Сервис заработка<br />и раскрутки в интернете
               </Typography>
-              <Typography variant="body1" mb={5} component="div">
-                Получай реальную целевую аудиторию без ботов, банов,<br />ввода пароля и без сомнительных конкурсов
+              <Typography variant="body1" mb={{md: 5, xs: 6}} component="div">
+                Получай реальную целевую аудиторию без ботов, банов,<br className={styles.hide} />ввода пароля и без сомнительных конкурсов
               </Typography>
               <Button variant="contained" href="#">Попробовать сейчас</Button>
 
               <Stack
                 direction='row'
-                spacing={12}
-                mt={10}
+                justifyContent={{sm: 'flex-start', xs: 'space-between'}}
+                spacing={{sm: 12, xs: 0}}
+                mt={{sm: 10, xs: 6}}
               >
                 <Stack direction='column'>
-                  <Typography color='accent' sx={{ fontSize: 36, textTransform: 'uppercase', fontWeight: 600 }}>100K+</Typography>
-                  <Typography variant="body1" component="div">
+                  <Typography
+                    color='accent'
+                    sx={{ 
+                      fontSize: {
+                        md: 36, xs: 28
+                      },
+                      textTransform: 'uppercase',
+                      fontWeight: 600
+                    }}
+                  >100K+</Typography>
+
+                  <Typography variant="body1" sx={{fontSize: {sm: 16, xs: 14}}} component="div">
                     Зарегистрировано<br />исполнителей
                   </Typography>
                 </Stack>
 
                 <Stack direction='column'>
-                  <Typography color='accent' sx={{ fontSize: 36, textTransform: 'uppercase', fontWeight: 600 }}>1M+</Typography>
-                  <Typography variant="body1" component="div">
+                  <Typography 
+                    color='accent'
+                    sx={{ 
+                      fontSize: {
+                        md: 36, xs: 28
+                      },
+                      textTransform: 'uppercase',
+                      fontWeight: 600
+                    }}
+                    >1M+</Typography>
+
+                  <Typography variant="body1" sx={{fontSize: {sm: 16, xs: 14}}} component="div">
                     Выполнених<br />заданий
                   </Typography>
                 </Stack>
 
                 <Stack direction='column'>
-                  <Typography color='accent' sx={{ fontSize: 36, textTransform: 'uppercase', fontWeight: 600 }}>2K+</Typography>
-                  <Typography variant="body1" component="div">
+                  <Typography
+                    color='accent'
+                    sx={{ 
+                      fontSize: {
+                        md: 36, xs: 28
+                      },
+                      textTransform: 'uppercase',
+                      fontWeight: 600
+                    }}
+                    >2K+</Typography>
+
+                  <Typography variant="body1" sx={{fontSize: {sm: 16, xs: 14}}} component="div">
                     Доступно<br />заданий
                   </Typography>
                 </Stack>
               </Stack>
-            </div>
+            </Box>
 
-            <div>
+            <div className={styles.heroImg}>
               <img src={HeroImg} alt="Service image" />
             </div>
           </Stack>

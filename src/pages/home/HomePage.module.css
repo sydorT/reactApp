@@ -5,3 +5,20 @@
     background-repeat: no-repeat;
     background-size: 313px 581px;
 }
+
+@media (max-width: 991.98px) {
+    .heroImg {
+        order: -1;
+        text-align: center;
+    }
+}
+
+@media (max-width: 599.98px) {
+    .heroImg {
+        max-width: 216px;
+        margin: auto;
+    }
+    .hide {
+        display: none;
+    }
+}
