@@ -3,6 +3,9 @@ import { Container, Stack, Button, Typography, Box } from '@mui/material';
 
 import HeroImg from './../../images/hero-img.svg'
 import SecurityImg from './../../images/security-bgr.svg'
+import Advantage1 from './../../images/advantage1.svg'
+import Advantage2 from './../../images/advantage2.svg'
+import Advantage3 from './../../images/advantage3.svg'
 
 export default function() {
   return (
@@ -87,7 +90,7 @@ export default function() {
         </Container>
       </div>
 
-      <Container maxWidth="laptop" sx={{px: {xs: 3}}}>
+      <Container maxWidth="laptop" sx={{px: {xs: 3}, mb: {md: 25, sm: 12, xs: 12}}}>
         <Stack
           direction={{ md: 'row', xs: 'column' }}
           justifyContent='space-between'
@@ -109,7 +112,61 @@ export default function() {
           </div>
         </Stack>
       </Container>
+
+      <div className={styles.advantages}>
+        <Box sx={{maxWidth: 1008, m: 'auto'}}>
+          <Container maxWidth='false'>
+
+            <Box sx={{
+              mb: {md: 9, xs: 7},
+              textAlign: 'center' }}
+            >
+              <Typography variant="h2" component="div">Наши преимущества</Typography>
+              <Typography variant="body1" component="div">Чем мы лучше от наших конкурентов?</Typography>
+            </Box>
+
+            <Stack
+              direction={{ md: 'row', xs: 'column' }}
+              justifyContent='space-between'
+              alignItems={{ md: 'flex-start', xs: 'center'}}
+              spacing={9}
+            >
+              <AdvantageItem 
+                img={Advantage1}
+                title={<>Гарантия выполнения<br/>заданий</>}
+                body='В случае невыполнения хоть одного условия  — возврат средств'
+              />
+
+              <AdvantageItem 
+                img={Advantage2}
+                title={<>Живое<br/>продвижение</>}
+                body='Заказы выполняются реальными людьми, которые ежедневно сидят в соц. сетях.'
+              />
+
+              <AdvantageItem 
+                img={Advantage3}
+                title={<>Оперативная служба<br/>поддержки</>}
+                body='Вежливая и быстрая Тех.Поддержка ответит на все Ваши вопросы с 8.00 до 21.00.'
+              />
+            </Stack>
+
+          </Container>
+        </Box>
+      </div>
       
     </>
   );
 }
+
+const AdvantageItem = (props) => {
+  return <Stack direction='column' alignItems='center' sx={{maxWidth: 265, m: 'auto'}}>
+    <Box sx={{ mb: 4}}>
+      <img src={props.img} alt="Advantage image" />
+    </Box>
+
+    <Stack direction='column' alignItems='center' sx={{textAlign: 'center'}}>
+      <Typography variant="h4" component="div">{props.title}</Typography>
+      <Typography variant="body1" component="div">{props.body}</Typography>
+    </Stack>
+  </Stack>;
+};

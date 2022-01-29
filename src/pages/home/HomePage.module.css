@@ -11,10 +11,30 @@
 	flex-shrink: 0;
 }
 
+.advantages {
+	background-image: url('../../images/advantage-bgr.svg');
+	background-position-x: right;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-size: 290px 617px;
+	padding-bottom: 160px;
+	margin-bottom: 40px;
+}
+
+@media (max-width: 1400.98px) {
+	.advantages {
+		background-image: none;
+	}
+}
+
 @media (max-width: 991.98px) {
 	.heroImg {
 		order: -1;
 		text-align: center;
+	}
+	.advantages {
+		padding-bottom: 0;
+		margin-bottom: 96px;
 	}
 }
 
