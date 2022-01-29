@@ -21,8 +21,25 @@
 	margin-bottom: 40px;
 }
 
+.howto {
+	background-image: url('../../images/howto-bgr.svg');
+	background-position-x: left;
+	background-position-y: bottom;
+	background-repeat: no-repeat;
+	background-size: 409px 637px;
+	padding-bottom: 186px;
+	margin-bottom: 13px;
+}
+
+
 @media (max-width: 1400.98px) {
 	.advantages {
+		background-image: none;
+	}
+}
+
+@media (max-width: 1024.98px) {
+	.howto {
 		background-image: none;
 	}
 }
@@ -32,6 +49,7 @@
 		order: -1;
 		text-align: center;
 	}
+	.howto,
 	.advantages {
 		padding-bottom: 0;
 		margin-bottom: 96px;
