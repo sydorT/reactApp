@@ -2,6 +2,7 @@ import styles from './HomePage.module.css';
 import { Container, Stack, Button, Typography, Box } from '@mui/material';
 
 import HeroImg from './../../images/hero-img.svg'
+import SecurityImg from './../../images/security-bgr.svg'
 
 export default function() {
   return (
@@ -85,6 +86,29 @@ export default function() {
           </Stack>
         </Container>
       </div>
+
+      <Container maxWidth="laptop" sx={{px: {xs: 3}}}>
+        <Stack
+          direction={{ md: 'row', xs: 'column' }}
+          justifyContent='space-between'
+          alignItems='center'
+        >
+          <Box sx={{
+            maxWidth: 510,
+            mb: {md: 0, xs: 4},
+            textAlign: {md: 'left', xs: 'center'} }}
+          >
+            <Typography variant="h2" component="div">Полная безопасность</Typography>
+            <Typography variant="body1" component="div">
+              Для обеспечения безопасности наша команда на протяжении многих лет изучает алгоритмы социальных сетей, благодаря чему нам удается соблюдать допустимые соц сетями лимит, полностью избегая тем самым любых блокировок
+            </Typography>
+          </Box>
+
+          <div className={styles.securityImg}>
+            <img src={SecurityImg} alt="Security image" />
+          </div>
+        </Stack>
+      </Container>
       
     </>
   );

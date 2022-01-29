@@ -1,27 +1,35 @@
 .hero {
-    background-image: url('../../images/hero-bgr.svg');
-    background-position-x: left;
-    background-position-y: 172px;
-    background-repeat: no-repeat;
-    background-size: 313px 581px;
+	background-image: url('../../images/hero-bgr.svg');
+	background-position-x: left;
+	background-position-y: 172px;
+	background-repeat: no-repeat;
+	background-size: 313px 581px;
+}
+
+.securityImg {
+	width: 418px;
+	flex-shrink: 0;
 }
 
 @media (max-width: 991.98px) {
-    .heroImg {
-        order: -1;
-        text-align: center;
-    }
+	.heroImg {
+		order: -1;
+		text-align: center;
+	}
 }
 
 @media (max-width: 599.98px) {
-    .heroImg {
-        max-width: 216px;
-        margin: auto;
-    }
-    .hero {
-        background-image: none;
-    }
-    .hide {
-        display: none;
-    }
+	.heroImg {
+		max-width: 216px;
+		margin: auto;
+	}
+	.hero {
+		background-image: none;
+	}
+	.hide {
+		display: none;
+	}
+	.securityImg {
+		max-width: 190px;
+	}
 }
