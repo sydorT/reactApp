@@ -1,5 +1,6 @@
 import styles from './HomePage.module.css';
-import { Container, Stack, Button, Typography, Box } from '@mui/material';
+import { Container, Stack, Button, Typography, Box, Accordion } from '@mui/material';
+import CustomizedAccordion from '../../components/accordion/CustomizedAccordion';
 
 import HeroImg from './../../images/hero-img.svg'
 import SecurityImg from './../../images/security-bgr.svg'
@@ -197,7 +198,43 @@ export default function() {
           </Container>
         </Box>
       </div>
-      
+
+      <Box sx={{maxWidth: 970, m: 'auto', mb: {md: 25, sm: 12, xs: 12}}}>
+        <Container maxWidth="false">
+          <Box sx={{
+            mb: {md: 9, xs: 7},
+            textAlign: 'center' }}
+          >
+            <Typography variant="h2" component="div">Ответы на вопросы</Typography>
+            <Typography variant="body1" component="div">Вы нас спрашиваете - мы отвечаем!</Typography>
+          </Box>
+
+
+          <CustomizedAccordion
+            id='1'
+            title='Мой аккаунт не заблокируют?'
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
+          />
+
+          <CustomizedAccordion
+            id='2'
+            title='Мне нужно указывать пароль от аккаунта?'
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
+          />
+
+          <CustomizedAccordion
+            id='3'
+            title='Мне нужно указывать пароль от аккаунта?'
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
+          />
+
+          <CustomizedAccordion
+            id='4'
+            title='Можно ли увидеть, что я купил подписчиков?'
+            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
+          />
+        </Container>
+      </Box>
     </>
   );
 }
