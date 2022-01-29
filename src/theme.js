@@ -39,6 +39,10 @@ const theme = createTheme({
       fontWeight: 500,
       marginLeft: 32
     },
+    menuLinkFooter: {
+      fontSize: 15,
+      fontWeight: 500
+    },
     menuLinkMobile: {
       fontSize: 20,
       fontWeight: 600
