@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import { styled } from '@mui/material/styles';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ArrowIcon from './../../images/accordion-arrow.svg';
+import './style.css';
 
 const ExpandMoreIcon = () => {
   return <img src={ArrowIcon} alt="Arrow icon" />;
@@ -36,9 +37,6 @@ const AccordionSummary = styled((props) => (
   '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
     transform: 'rotate(180deg)',
   },
-  '& .MuiAccordion-root.Mui-expanded:last-of-type': {
-    marginBottom: '32px',
-  },
   '& .MuiAccordionSummary-content': {
     margin: '0px 0px',
   },
@@ -58,8 +56,33 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   }
 }));
 
-export default function CustomizedAccordion(props) {
-  const [expanded, setExpanded] = React.useState('panel1');
+export default function(props) {
+  const [expandedIndex, setExpandedIndex] = useState();
+
+  const onToggle = (toggledIndex) => {
+    if(toggledIndex === expandedIndex){
+      setExpandedIndex(undefined);
+    } else {
+      setExpandedIndex(toggledIndex);
+    }
+  }
+
+  return <>
+    {props.data.map((v, i) => 
+      <AccordionItem
+        key={i}
+        index={i}
+        isExpanded={i === expandedIndex}
+        title={v.title}
+        body={v.body}
+        onToggle={onToggle}
+      />
+      )}
+  </>
+}
+
+function AccordionItem(props) {
+  const [expanded, setExpanded] = useState('panel1');
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
@@ -67,21 +90,25 @@ export default function CustomizedAccordion(props) {
 
   return (
     <div>
-      <Accordion expanded={expanded === `panel${props.id}`} onChange={handleChange(`panel${props.id}`)}>
+      <Accordion expanded={props.isExpanded} onChange={() => props.onToggle(props.index)}>
+          <AccordionSummary>
+            <Typography
+              sx={{
+                color: 'secondary.main',
+                fontSize: {sm: 18, xs: 14},
+                fontWeight: 600
+              }}>{props.title}</Typography>
+          </AccordionSummary>
 
-        <AccordionSummary id={`panel${props.id}d-header`}>
-          <Typography
-            sx={{
-              color: 'secondary.main',
-              fontSize: {sm: 18, xs: 14},
-              fontWeight: 600
-            }}>{props.title}</Typography>
-        </AccordionSummary>
-
-        <AccordionDetails>
-          <Typography sx={{color: 'primary.main', fontSize: 14, lineHeight: '18px', fontWeight: 400}}>{props.body}</Typography>
-        </AccordionDetails>
-
+          <AccordionDetails>
+            <Typography 
+              sx={{
+                color: 'primary.main',
+                fontSize: 14,
+                lineHeight: '18px',
+                fontWeight: 400
+                }}>{props.body}</Typography>
+          </AccordionDetails>
       </Accordion>
     </div>
   );

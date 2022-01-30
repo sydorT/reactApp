@@ -31,6 +31,59 @@
 	margin-bottom: 13px;
 }
 
+.reviews {
+	position: relative;
+	margin-bottom: 200px;
+}
+
+.reviews::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 285px;
+	background-image: url('../../images/testimonials-bgr.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 348px;
+	height: 575px;
+	z-index: -1;
+}
+
+.bullet {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #F5F5F5;
+	margin: 0 2px;
+}
+
+.swiper {
+	padding: 40px 15px 50px;
+}
+
+.activeBullet {
+	width: 32px;
+	height: 6px;
+	background-color: #9C42E2;
+	border-radius: 15px;
+}
+
+.card {
+	max-width: 570px;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.07), 0px 12px 16px rgba(0, 0, 0, 0.04);
+	border-radius: 10px;
+	padding: 40px 30px;
+}
+
+.avatarImg {
+	width: 120px;
+	margin-right: 25px;
+	flex-shrink: 0;
+}
 
 @media (max-width: 1400.98px) {
 	.advantages {
@@ -54,6 +107,31 @@
 		padding-bottom: 0;
 		margin-bottom: 96px;
 	}
+	.reviews {
+		margin-bottom: 96px;
+	}
+	.card {
+		padding: 30px;
+		text-align: center;
+	}
+	.avatarImg {
+		margin-right: 0;
+		margin-bottom: 25px;
+	}
+	.reviews::before {
+		content: none;
+	}
+}
+
+@media (max-width: 680.98px) {
+	.card {
+		max-width: 255px;
+		margin: auto;
+	}
+	.swiperslide {
+		margin: auto;
+		text-align: center;
+	}
 }
 
 @media (max-width: 599.98px) {
@@ -69,5 +147,8 @@
 	}
 	.securityImg {
 		max-width: 190px;
+	}
+	.swiper {
+		padding: 5px 15px 50px;
 	}
 }

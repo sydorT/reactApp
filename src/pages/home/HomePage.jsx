@@ -1,6 +1,10 @@
+import { Container, Stack, Button, Typography, Box } from '@mui/material';
+import Accordion from '../../components/accordion/Accordion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination'
 import styles from './HomePage.module.css';
-import { Container, Stack, Button, Typography, Box, Accordion } from '@mui/material';
-import CustomizedAccordion from '../../components/accordion/CustomizedAccordion';
 
 import HeroImg from './../../images/hero-img.svg'
 import SecurityImg from './../../images/security-bgr.svg'
@@ -10,6 +14,21 @@ import Advantage3 from './../../images/advantage3.svg'
 import Howto1 from './../../images/howto1.svg'
 import Howto2 from './../../images/howto2.svg'
 import Howto3 from './../../images/howto3.svg'
+import Avatar1 from './../../images/avatar1.png'
+import Avatar2 from './../../images/avatar2.png'
+
+const testimonials = [
+  {
+    img: Avatar1,
+    name: 'Юрий Б.',
+    review: 'Если нужна накрутка в Likee, причем всего – подписчиков, лайков, просмотров, репостов, комментариев, то рекомендую обращаться сюда, в Crowd Marketing. '
+  },
+  {
+    img: Avatar2,
+    name: 'Максим П.',
+    review: 'Сотрудничаю с Crowd Marketing больше полугода. В Твиттере начал продвигать аккаунты только недавно. Накрутка очень помогла собрать базовую аудиторию.'
+  }
+]
 
 export default function() {
   return (
@@ -199,6 +218,66 @@ export default function() {
         </Box>
       </div>
 
+      <div className={styles.reviews}>
+        <Container maxWidth='lg' sx={{px: {xs: 3}}}>
+          <Box sx={{
+            mb: {md: 5, xs: 6},
+            textAlign: 'center' }}
+          >
+            <Typography variant="h2" component="div">Отзывы о наших<br className={styles.hide}/>исполнителях</Typography>
+            <Typography variant="body1" component="div">Вот что думают заказчики о наших исполнителях</Typography>
+          </Box>
+
+          <Swiper className={styles.swiper}
+            loop={true}
+            pagination={{
+              clickable: true,
+              type: 'bullets',
+              bulletClass: styles.bullet,
+              bulletActiveClass: styles.activeBullet
+            }}
+            modules={[Pagination]}
+            spaceBetween={40}
+            slidesPerView={1}
+            breakpoints={{
+              680: {
+                slidesPerView: 2,
+                pagination: false,
+                spaceBetween: 40
+              },
+            }}
+          >
+            {testimonials.map((card, i) => {
+              return (
+                <SwiperSlide key={i} className={styles.swiperslide}>
+                  <div className={styles.card}>
+                    <Stack direction={{ md: 'row', xs: 'column' }} alignItems={{ md: 'flex-start', xs: 'center' }}>
+                      <img src={card.img} className={styles.avatarImg} alt="Person image" />
+
+                      <Box>
+                        <Typography sx={{
+                          color: '#121212',
+                          fontSize: {sm: 22, xs: 18},
+                          fontWeight: {sm: 700, xs: 600},
+                          mb: '10px'
+                        }}>{card.name}</Typography>
+
+                        <Typography sx={{
+                          color: 'primary',
+                          fontSize: {sm: 16, xs: 14},
+                          fontWeight: 500,
+                          lineHeight: {sm: '21px', xs: '18px'},
+                        }}>{card.review}</Typography>
+                      </Box>
+                    </Stack>
+                  </div>
+                </SwiperSlide>
+              )
+            })}
+          </Swiper>
+        </Container>
+      </div>
+
       <Box sx={{maxWidth: 970, m: 'auto', mb: {md: 25, sm: 12, xs: 12}}}>
         <Container maxWidth="false">
           <Box sx={{
@@ -209,30 +288,24 @@ export default function() {
             <Typography variant="body1" component="div">Вы нас спрашиваете - мы отвечаем!</Typography>
           </Box>
 
-
-          <CustomizedAccordion
-            id='1'
-            title='Мой аккаунт не заблокируют?'
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
-          />
-
-          <CustomizedAccordion
-            id='2'
-            title='Мне нужно указывать пароль от аккаунта?'
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
-          />
-
-          <CustomizedAccordion
-            id='3'
-            title='Мне нужно указывать пароль от аккаунта?'
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
-          />
-
-          <CustomizedAccordion
-            id='4'
-            title='Можно ли увидеть, что я купил подписчиков?'
-            body='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
-          />
+          <Accordion data={[
+              {
+                title:'Мой аккаунт не заблокируют?',
+                body:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
+              },
+              {
+                title:'Мне нужно указывать пароль от аккаунта?',
+                body:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
+              },
+              {
+                title:'Охваты моих публикаций не станут меньше?',
+                body:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
+              },
+              {
+                title:'Можно ли увидеть, что я купил подписчиков?',
+                body:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna consectetur vitae ut vitae quisque lorem phasellus. Vel, nisi, bibendum purus sollicitudin consectetur aliquam mi diam viverra. Ultricies diam duis nunc elementum tellus sit.'
+              }
+          ]}/>
         </Container>
       </Box>
     </>
