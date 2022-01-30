@@ -75,7 +75,7 @@ const Header = () => {
           onClose={toggleMenu}
           TransitionComponent={Transition}
         >
-          <Stack direction="column" justifyContent='space-between' sx={{height: '100%'}}>
+          <Stack direction="column" justifyContent='space-between' sx={{height: '100%', pb: 12}}>
 
             <Stack direction="column" spacing={4} mt={11.5} ml={8}>
               <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
