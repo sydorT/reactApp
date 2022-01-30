@@ -122,7 +122,7 @@ export default function() {
                 mb: {md: 9, xs: 7},
                 textAlign: 'center' }}
               >
-              <Typography variant="h2" component="div">Почувствуйте эффект<br className={styles.hide} />продвижения</Typography>
+              <Typography variant="h2" component="div">Почувствуйте эффект<br />продвижения</Typography>
               <Typography variant="body1" component="div">Прозрачная статистика как никогда до этого.<br className={styles.hide} />Оцените влияние ваших действий на рост аккаунта</Typography>
             </Box>
           </Container>
