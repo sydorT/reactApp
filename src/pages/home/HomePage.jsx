@@ -16,6 +16,9 @@ import Howto2 from './../../images/howto2.svg'
 import Howto3 from './../../images/howto3.svg'
 import Avatar1 from './../../images/avatar1.png'
 import Avatar2 from './../../images/avatar2.png'
+import Instagram from './../../images/instagram-square.png'
+import Twitter from './../../images/twitter-filled.png'
+import Chart from './../../images/curve-line.svg'
 
 const testimonials = [
   {
@@ -39,7 +42,6 @@ export default function() {
             direction={{ md: 'row', xs: 'column' }}
             justifyContent='space-between'
             pt={{md: 17, xs: 1}}
-            pb={{md: 21.5, xs: 5}}
           >
             <Box sx={{mt: {md: 0, xs: 4}}}>
               <Typography variant="h2" component="div">
@@ -111,6 +113,137 @@ export default function() {
             </div>
           </Stack>
         </Container>
+      </div>
+
+      <div className={styles.progress}>
+        <Box sx={{maxWidth: 774, m: 'auto'}}>
+          <Container maxWidth='false'>
+            <Box sx={{
+                mb: {md: 9, xs: 7},
+                textAlign: 'center' }}
+              >
+              <Typography variant="h2" component="div">Почувствуйте эффект<br className={styles.hide} />продвижения</Typography>
+              <Typography variant="body1" component="div">Прозрачная статистика как никогда до этого.<br className={styles.hide} />Оцените влияние ваших действий на рост аккаунта</Typography>
+            </Box>
+          </Container>
+
+          <Swiper className={styles.swiperProgress}
+            pagination={{
+              clickable: true,
+              type: 'bullets',
+              bulletClass: styles.bullet,
+              bulletActiveClass: styles.activeBullet
+            }}
+            modules={[Pagination]}
+            spaceBetween={6}
+            slidesPerView={1}
+            breakpoints={{
+              767: {
+                slidesPerView: 2,
+                pagination: false
+              },
+            }}
+          >
+            <SwiperSlide className={styles.swiperslideProgress}>
+              <Box className={styles.slide}
+                sx={{
+                  maxWidth: 320,
+                  height: 315,
+                  backgroundColor: '#FBFBFB',
+                  borderRadius: '30px',
+                  p: { sm: '40px 34px 33px', xs: '40px 13px 33px' }
+                }}>
+                <Typography sx={{fontSize: 20, fontWeight: 700, lineHeight: '26px', color: 'secondary.main', textAlign: 'center', mb: 2}}>Вы увидите каждого, кто<br />лайкнул или подписался на вас</Typography>
+                <Typography sx={{fontSize: 12, fontWeight: 500, lineHeight: '15px', color: 'primary.main', textAlign: 'center', mb: 5}}>Каждое продвижение записывается в историю<br />для отслеживания активности</Typography>
+
+                <Stack direction='row' justifyContent='space-between'>
+                  <Box sx={{backgroundColor: '#fff', borderRadius: '15px', px: '13px', pt: '16px', pb: '10px', width: '126px', minHeight: '138px'}}>
+                    <Stack direction='row' alignItems='center' mb={2} pl={1}>
+                      <img src={Instagram} className={styles.socialIcon} alt="Instagram icon" />
+                      <div>
+                        <Typography sx={{fontSize: 11, fontWeight: 500, color: 'secondary.main', mb: '1px'}}>Instagram</Typography>
+                        <Typography sx={{fontSize: 8, fontWeight: 500, color: 'primary.main'}}>Вторник, 4 января</Typography>
+                      </div>
+                    </Stack>
+
+                    <Box sx={{borderBottom: 1, borderColor: '#F8F8F8', display: 'flex', alignItems: 'center', mb: '3px', pb: '3px'}}>
+                      <Typography sx={{ width: '33%', flexShrink: 0, fontSize: 16, fontWeight: 600, color: 'secondary.main', pl: '10px' }}>+97</Typography>
+                      <Typography sx={{ fontSize: 8, color: 'primary' }}>Лайков</Typography>
+                    </Box>
+                    <Box sx={{borderBottom: 1, borderColor: '#F8F8F8', display: 'flex', alignItems: 'center', mb: '3px', pb: '3px'}}>
+                      <Typography sx={{ width: '33%', flexShrink: 0, fontSize: 16, fontWeight: 600, color: 'secondary.main', pl: '10px' }}>+32</Typography>
+                      <Typography sx={{ fontSize: 8, color: 'primary' }}>Подписчиков</Typography>
+                    </Box>
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                      <Typography sx={{ width: '33%', flexShrink: 0, fontSize: 16, fontWeight: 600, color: 'secondary.main', pl: '10px' }}>+51</Typography>
+                      <Typography sx={{ fontSize: 8, color: 'primary' }}>Репостов</Typography>
+                    </Box>
+                  </Box>
+
+                  <Box sx={{backgroundColor: '#fff', borderRadius: '15px', px: '13px', pt: '16px', pb: '10px', width: '126px', minHeight: '138px'}}>
+                    <Stack direction='row' alignItems='center' mb={2} pl={1}>
+                      <img src={Twitter} className={styles.socialIcon} alt="Instagram icon" />
+                      <div>
+                        <Typography sx={{fontSize: 11, fontWeight: 500, color: 'secondary.main', mb: '1px'}}>Twitter</Typography>
+                        <Typography sx={{fontSize: 8, fontWeight: 500, color: 'primary.main'}}>Вторник, 4 января</Typography>
+                      </div>
+                    </Stack>
+
+                    <Box sx={{borderBottom: 1, borderColor: '#F8F8F8', display: 'flex', alignItems: 'center', mb: '3px', pb: '3px'}}>
+                      <Typography sx={{ width: '33%', flexShrink: 0, fontSize: 16, fontWeight: 600, color: 'secondary.main', pl: '10px' }}>+85</Typography>
+                      <Typography sx={{ fontSize: 8, color: 'primary' }}>Лайков</Typography>
+                    </Box>
+                    <Box sx={{borderBottom: 1, borderColor: '#F8F8F8', display: 'flex', alignItems: 'center', mb: '3px', pb: '3px'}}>
+                      <Typography sx={{ width: '33%', flexShrink: 0, fontSize: 16, fontWeight: 600, color: 'secondary.main', pl: '10px' }}>+26</Typography>
+                      <Typography sx={{ fontSize: 8, color: 'primary' }}>Подписчиков</Typography>
+                    </Box>
+                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                      <Typography sx={{ width: '33%', flexShrink: 0, fontSize: 16, fontWeight: 600, color: 'secondary.main', pl: '10px' }}>+36</Typography>
+                      <Typography sx={{ fontSize: 8, color: 'primary' }}>Репостов</Typography>
+                    </Box>
+                  </Box>
+                </Stack>
+              </Box>
+            </SwiperSlide>
+            
+            <SwiperSlide className={styles.swiperslideProgress}>
+              <Box
+                className={styles.bg}
+                sx={{
+                  width: 234,
+                  height: 315,
+                  borderRadius: '30px',
+                  p: '40px 34px 33px'
+                }}>
+                <Typography sx={{fontSize: 20, fontWeight: 700, lineHeight: '26px', color: '#fff', textAlign: 'center', mb: 2}}>Сравнивайте прогресс<br />за каждый день</Typography>
+                <Typography sx={{fontSize: 12, fontWeight: 500, lineHeight: '15px', color: '#fff', textAlign: 'center', mb: 3}}>Отслеживайте как ваши публикации и<br />действия сервиса влияют на рост</Typography>
+
+                <Box sx={{backgroundColor: '#fff', borderRadius: '15px', pt: '16px', pb: '14px', width: '158px', minHeight: '143px', m: 'auto'}} className={styles.box}>
+                  <Typography sx={{fontSize: 11, fontWeight: 600, color: 'secondary.main', px: 2, mb: 2, position: 'relative', zIndex: '1'}}>Вторник, 4 января</Typography>
+
+                  <Stack direction='row' justifyContent='space-between' px={2} mb='13px' sx={{position: 'relative', zIndex: '1'}}>
+                    <Box>
+                      <Typography sx={{fontSize: 16, fontWeight: 600, lineHeight: '20px', color: 'secondary.main'}}>+125</Typography>
+                      <Typography sx={{fontSize: 8, fontWeight: 500, color: 'primary.main'}}>Подписчиков</Typography>
+                    </Box>
+                    <Box>
+                      <Typography sx={{fontSize: 16, fontWeight: 600, lineHeight: '20px', color: 'secondary.main'}}>+567</Typography>
+                      <Typography sx={{fontSize: 8, fontWeight: 500, color: 'primary.main'}}>Просмотров</Typography>
+                    </Box>
+                  </Stack>
+                  <img src={Chart} className={styles.chartImg} alt="Chart image" />
+                  <Box sx={{textAlign: 'center', position: 'relative', zIndex: '1'}}>
+                    <Button
+                      sx={{fontSize: '8px', py: '5px', px: '19px', mt: '10px'}}
+                      variant="contained"
+                    >Запустить еще раз</Button>
+                  </Box>
+                  <div className={styles.block}></div>
+                </Box>
+              </Box>
+            </SwiperSlide>
+          </Swiper>
+        </Box>
       </div>
 
       <div className={styles.howto}>
