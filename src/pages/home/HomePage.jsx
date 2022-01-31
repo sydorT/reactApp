@@ -254,7 +254,7 @@ export default function() {
               mb: {md: 9, xs: 7},
               textAlign: 'center' }}
             >
-              <Typography variant="h2" component="div">Зарабатывайте выполняя<br className={styles.hide} />задания</Typography>
+              <Typography variant="h2" component="div">Зарабатывайте выполняя <br className={styles.hide} />задания</Typography>
               <Typography variant="body1" component="div">3 шага чтобы начать зарабатывать</Typography>
             </Box>
 
