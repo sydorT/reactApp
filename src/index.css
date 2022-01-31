@@ -6,6 +6,11 @@ body {
   margin: 0;
 }
 
+body.modal-open {
+  position: fixed;
+  width: 100%;
+}
+
 a {
   text-decoration: none;
 }

@@ -36,6 +36,7 @@
   background-position-y: 300px;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: -1;
 }
 
 .linkMobile {
@@ -54,10 +55,6 @@
   border-radius: 2px;
 }
 
-.MuiPaper-root.MuiDrawer-paper {
-  height: calc(100% - 80px);
-}
-
 @media (max-width: 1024.98px) {
   .nav {
     margin-right: 3vw;
@@ -69,12 +66,21 @@
     display: none;
   }
   .burgerIcon {
+    position: relative;
     display: block;
+    z-index: 1;
   }
 }
 
 @media (max-width: 375.98px) {
   .modalBgr {
     background-position-x: -174px;
+  }
+}
+
+@media (max-width: 320px) {
+  .modalBgr {
+    background-position-x: left;
+    background-position: contain;
   }
 }

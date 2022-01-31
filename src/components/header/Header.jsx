@@ -1,5 +1,3 @@
-import { BackdropUnstyled } from "@mui/base";
-
 import React, { useState } from "react";
 import styles from "./Header.module.css";
 import {
@@ -7,8 +5,6 @@ import {
   Stack,
   IconButton,
   Link,
-  Dialog,
-  Slide,
   Button,
   useTheme,
   useMediaQuery,
@@ -20,18 +16,15 @@ import BurgerMenu from "./../../images/burger-menu.svg";
 import BurgerMenuOpen from "./../../images/burger-menu-open.svg";
 import MenuLink from "./MenuLink";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
 const Header = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isAuthorized = false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    document.body.classList.toggle('modal-open');
   };
 
   return (
@@ -104,44 +97,8 @@ const Header = () => {
               </Stack>
 
             </Stack>
+            <div className={styles.modalBgr}></div>
         </Drawer>
-
-        {/* <Dialog
-          fullScreen
-          sx={{ mt: 10, display: {md: 'none'} }}
-          PaperProps={{elevation: 0}}
-          BackdropComponent={BackdropUnstyled}
-          open={isMenuOpen}
-          onClose={toggleMenu}
-          TransitionComponent={Transition}
-        >
-          <Stack direction="column" justifyContent='space-between' sx={{height: '100%', pb: 12}}>
-
-            <Stack direction="column" spacing={4} mt={11.5} ml={8}>
-              <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
-                <span className={styles.linkMobile}>Новости</span>
-              </MenuLink>
-              <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
-                <span className={styles.linkMobile}>Контакты</span>
-              </MenuLink>
-              <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
-                <span className={styles.linkMobile}>Правила</span>
-              </MenuLink>
-            </Stack>
-
-            <Stack 
-              direction='column'
-              alignItems='center'
-              spacing={3}
-              sx={{position: 'relative', zIndex: '1', mt: 4}}
-            >
-              <Button variant="contained" href="#">Вход</Button>
-              <MenuLink href='/' color='link' variant='menuLinkMobileBlue'>Регистрация</MenuLink>
-            </Stack>
-
-          </Stack>
-          <div className={styles.modalBgr}></div>
-        </Dialog> */}
       </Container>
     </>
   );
