@@ -13,3 +13,7 @@ a {
 img {
   max-width: 100%;
 }
+
+.MuiPaper-root.MuiDrawer-paper {
+  height: calc(100% - 80px);
+}

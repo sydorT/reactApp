@@ -9,7 +9,10 @@ import {
   Link,
   Dialog,
   Slide,
-  Button
+  Button,
+  useTheme,
+  useMediaQuery,
+  Drawer
 } from "@mui/material";
 
 import Logo from "./../../images/logo.svg";
@@ -22,6 +25,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const Header = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isAuthorized = false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -66,7 +71,42 @@ const Header = () => {
           </IconButton>
         </div>
 
-        <Dialog
+        <Drawer
+          elevation={0}
+          sx={{ mt: 10, display: {md: 'none'} }}
+          hideBackdrop={true}
+          anchor={'bottom'}
+          open={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+        >
+          <Stack direction="column" justifyContent='space-between' sx={{height: '100%', pb: 12}}>
+
+              <Stack direction="column" spacing={4} mt={11.5} ml={8}>
+                <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
+                  <span className={styles.linkMobile}>Новости</span>
+                </MenuLink>
+                <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
+                  <span className={styles.linkMobile}>Контакты</span>
+                </MenuLink>
+                <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
+                  <span className={styles.linkMobile}>Правила</span>
+                </MenuLink>
+              </Stack>
+
+              <Stack 
+                direction='column'
+                alignItems='center'
+                spacing={3}
+                sx={{position: 'relative', zIndex: '1', mt: 4}}
+              >
+                <Button variant="contained" href="#">Вход</Button>
+                <MenuLink href='/' color='link' variant='menuLinkMobileBlue'>Регистрация</MenuLink>
+              </Stack>
+
+            </Stack>
+        </Drawer>
+
+        {/* <Dialog
           fullScreen
           sx={{ mt: 10, display: {md: 'none'} }}
           PaperProps={{elevation: 0}}
@@ -100,10 +140,8 @@ const Header = () => {
             </Stack>
 
           </Stack>
-          
-          
           <div className={styles.modalBgr}></div>
-        </Dialog>
+        </Dialog> */}
       </Container>
     </>
   );

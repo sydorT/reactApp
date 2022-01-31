@@ -54,6 +54,10 @@
   border-radius: 2px;
 }
 
+.MuiPaper-root.MuiDrawer-paper {
+  height: calc(100% - 80px);
+}
+
 @media (max-width: 1024.98px) {
   .nav {
     margin-right: 3vw;
