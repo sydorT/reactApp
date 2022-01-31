@@ -51,24 +51,33 @@ const theme = createTheme({
       marginLeft: 32,
     },
     menuLinkHeader: {
+      display: 'inline-block',
       position: 'relative',
       fontSize: 15,
       fontWeight: 500,
       marginLeft: 32,
+      transition: '0.3s',
       '&:hover': {
         color: '#9C42E2',
-        textShadow: '0 0 .65px #9C42E2, 0 0 .65px #9C42E2, 0 0 .65px #9C42E2, 0 0 .65px #9C42E2, 0 0 .65px #9C42E2, 0 0 .65px #9C42E2'
+        transform: 'translateY(-4px)'
       },
-      '&:hover&::after': {
+      '&::after': {
         content: "''",
         position: 'absolute',
-        left: '50%',
-        transform: 'translateX(-50%)',
         bottom: '-4px',
-        width: '110%',
         height: '2px',
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        width: '0%',
+        opacity: '0',
         borderRadius: '14px',
-        backgroundColor: '#9C42E2'
+        backgroundColor: '#9C42E2',
+        transition: 'all .3s'
+      },
+      '&:hover&::after': {
+        width: '105%',
+        opacity: '1',
       }
     },
     menuLinkFooter: {
