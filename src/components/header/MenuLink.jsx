@@ -5,7 +5,7 @@ const LinkMenu = (props) => {
     href={props.href}
     variant={props.variant}
     color={props.color}
-    underline="hover"
+    underline={props.underline}
     >
       {props.children}
   </Link>;

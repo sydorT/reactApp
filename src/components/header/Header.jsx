@@ -39,19 +39,19 @@ const Header = () => {
             <div className={styles.nav}>
               {isAuthorized ? (
                 <>
-                  <MenuLink href='/' color='secondary' variant='menuLink'>Задания</MenuLink>
-                  <MenuLink href='/' color='secondary' variant='menuLink'>Личный кабинет</MenuLink>
+                  <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Задания</MenuLink>
+                  <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Личный кабинет</MenuLink>
                 </>) : null}
               
-              <MenuLink href='/' color='secondary' variant='menuLink'>Новости</MenuLink>
-              <MenuLink href='/' color='secondary' variant='menuLink'>Контакты</MenuLink>
-              <MenuLink href='/' color='secondary' variant='menuLink'>Правила</MenuLink>
+              <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Новости</MenuLink>
+              <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Контакты</MenuLink>
+              <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Правила</MenuLink>
             </div>
 
             <Stack direction="row" spacing={1.5}>
-              <MenuLink href='/' color='primary' variant='menuLink'>Вход</MenuLink>
+              <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
               <span className={styles.separator}>/</span>
-              <MenuLink href='/' color='primary' variant='menuLink'>Регистрация</MenuLink>
+              <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Регистрация</MenuLink>
             </Stack>
           </div>
 
@@ -75,13 +75,13 @@ const Header = () => {
           <Stack direction="column" justifyContent='space-between' sx={{height: '100%', pb: 12}}>
 
               <Stack direction="column" spacing={4} mt={11.5} ml={8}>
-                <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
+                <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
                   <span className={styles.linkMobile}>Новости</span>
                 </MenuLink>
-                <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
+                <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
                   <span className={styles.linkMobile}>Контакты</span>
                 </MenuLink>
-                <MenuLink href='/' color='secondary' variant='menuLinkMobile'>
+                <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
                   <span className={styles.linkMobile}>Правила</span>
                 </MenuLink>
               </Stack>
@@ -93,7 +93,7 @@ const Header = () => {
                 sx={{position: 'relative', zIndex: '1', mt: 4}}
               >
                 <Button variant="contained" href="#">Вход</Button>
-                <MenuLink href='/' color='link' variant='menuLinkMobileBlue'>Регистрация</MenuLink>
+                <MenuLink href='/' color='link' underline='none' variant='menuLinkMobileBlue'>Регистрация</MenuLink>
               </Stack>
 
             </Stack>

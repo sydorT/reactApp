@@ -28,18 +28,18 @@ const Footer = () => {
           <Stack direction='column' sx={{ mb: { sm: 0, xs: 4 } }}>
             <Box sx={{ fontSize: 17, fontWeight: 500, mb: 3 }} color='accent'>Услуги</Box>
             <Stack direction='column' spacing={2.5}>
-              <MenuLink href='/' color='secondary' variant='menuLinkFooter'>Сделать заказ</MenuLink>
-              <MenuLink href='/' color='secondary' variant='menuLinkFooter'>Начать зарабатывать</MenuLink>
+              <MenuLink href='/' color='secondary' underline='hover' variant='menuLinkFooter'>Сделать заказ</MenuLink>
+              <MenuLink href='/' color='secondary' underline='hover' variant='menuLinkFooter'>Начать зарабатывать</MenuLink>
             </Stack>
           </Stack>
 
           <Stack direction='column' sx={{ mb: { sm: 0, xs: 4 } }}>
             <Box sx={{ fontSize: 17, fontWeight: 500, mb: 3 }} color='accent'>О нас</Box>
             <Stack direction='column' spacing={2.5}>
-              <MenuLink href='/' color='secondary' variant='menuLinkFooter'>Новости</MenuLink>
-              <MenuLink href='/' color='secondary' variant='menuLinkFooter'>Контакты</MenuLink>
-              <MenuLink href='/' color='secondary' variant='menuLinkFooter'>FAQ</MenuLink>
-              <MenuLink href='/' color='secondary' variant='menuLinkFooter'>Помощь</MenuLink>
+              <MenuLink href='/' color='secondary' underline='hover' variant='menuLinkFooter'>Новости</MenuLink>
+              <MenuLink href='/' color='secondary' underline='hover' variant='menuLinkFooter'>Контакты</MenuLink>
+              <MenuLink href='/' color='secondary' underline='hover' variant='menuLinkFooter'>FAQ</MenuLink>
+              <MenuLink href='/' color='secondary' underline='hover' variant='menuLinkFooter'>Помощь</MenuLink>
             </Stack>
           </Stack>
 

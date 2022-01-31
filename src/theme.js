@@ -19,9 +19,9 @@ const theme = createTheme({
     fontFamily: 'Inter, sans-serif',
     fontSize: 16,
     h2: {
-      fontSize: 46,
+      fontSize: 36,
       fontWeight: 600,
-      lineHeight: '60px',
+      lineHeight: '46px',
       color: '#232323',
       marginBottom: 24,
       '@media (max-width: 599.98px)': {
@@ -48,7 +48,28 @@ const theme = createTheme({
     menuLink: {
       fontSize: 15,
       fontWeight: 500,
-      marginLeft: 32
+      marginLeft: 32,
+    },
+    menuLinkHeader: {
+      position: 'relative',
+      fontSize: 15,
+      fontWeight: 500,
+      marginLeft: 32,
+      '&:hover': {
+        color: '#9C42E2',
+        textShadow: '0 0 .65px #9C42E2, 0 0 .65px #9C42E2, 0 0 .65px #9C42E2, 0 0 .65px #9C42E2, 0 0 .65px #9C42E2, 0 0 .65px #9C42E2'
+      },
+      '&:hover&::after': {
+        content: "''",
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        bottom: '-4px',
+        width: '110%',
+        height: '2px',
+        borderRadius: '14px',
+        backgroundColor: '#9C42E2'
+      }
     },
     menuLinkFooter: {
       fontSize: 15,
