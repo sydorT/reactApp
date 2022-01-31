@@ -7,6 +7,10 @@
 	padding-bottom: 200px;
 }
 
+.hero {
+	padding-bottom: 285px;
+}
+
 .hero::before {
 	content: '';
 	position: absolute;
@@ -206,7 +210,7 @@
 	.advantages,
 	.hero {
 		position: relative;
-		padding-bottom: 96px;
+		padding-bottom: 100px;
 	}
 	.card {
 		padding: 30px;

@@ -311,7 +311,7 @@ export default function() {
       </Container>
 
       <div className={styles.advantages}>
-        <Box sx={{maxWidth: 1008, m: 'auto'}}>
+        <Box sx={{maxWidth: 1018, m: 'auto'}}>
           <Container maxWidth='false'>
 
             <Box sx={{
