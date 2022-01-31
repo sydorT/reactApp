@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Container, Stack, Button, Typography, Box, Fade, Zoom } from '@mui/material';
+import { Container, Stack, Button, Typography, Box, Fade } from '@mui/material';
 import Accordion from '../../components/accordion/Accordion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
@@ -39,18 +39,16 @@ export default function() {
   const hiddenContainer = useRef(null);
 
   useEffect(() => { 
-    const scrolled = hiddenContainer.current.scrollHeight;
-
     function handleScroll() {
-      let newScrollPosition = window.scrollY;
-      let shouldShow = newScrollPosition + window.innerHeight;
+      const hiddenContainerY = hiddenContainer.current.scrollHeight;
+      const scrolledY = window.scrollY + window.innerHeight;
 
-      if (shouldShow > scrolled) {
+      if (scrolledY > hiddenContainerY) {
         setShow(true); 
       } 
     }
 
-    window.addEventListener('scroll', handleScroll, {passive: true});
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -81,53 +79,18 @@ export default function() {
                 spacing={{sm: 12, xs: 0}}
                 mt={{sm: 10, xs: 6}}
               >
-                <Stack direction='column'>
-                  <Typography
-                    color='accent'
-                    sx={{ 
-                      fontSize: {
-                        md: 36, xs: 28
-                      },
-                      fontWeight: 600
-                    }}
-                  >100K+</Typography>
-
-                  <Typography variant="body1" sx={{fontSize: {sm: 16, xs: 14}}} component="div">
-                    Зарегистрировано<br />исполнителей
-                  </Typography>
-                </Stack>
-
-                <Stack direction='column'>
-                  <Typography 
-                    color='accent'
-                    sx={{ 
-                      fontSize: {
-                        md: 36, xs: 28
-                      },
-                      fontWeight: 600
-                    }}
-                    >1M+</Typography>
-
-                  <Typography variant="body1" sx={{fontSize: {sm: 16, xs: 14}}} component="div">
-                    Выполнених<br />заданий
-                  </Typography>
-                </Stack>
-
-                <Stack direction='column'>
-                  <Typography
-                    color='accent'
-                    sx={{ 
-                      fontSize: {
-                        md: 36, xs: 28
-                      },
-                      fontWeight: 600
-                    }}
-                    >2K+</Typography>
-
-                  <Typography variant="body1" sx={{fontSize: {sm: 16, xs: 14}}} component="div">
-                    Доступно<br />заданий
-                  </Typography>
-                </Stack>
+                <HomeFeature 
+                  value='100K+'
+                  title={<>Зарегистрировано<br />исполнителей</>}
+                />
+                <HomeFeature 
+                  value='1M+'
+                  title={<>Выполнених<br />заданий</>}
+                />
+                <HomeFeature 
+                  value='2K+'
+                  title={<>Доступно<br />заданий</>}
+                />
               </Stack>
             </Box>
 
@@ -481,4 +444,20 @@ const Feature = (props) => {
       <Typography variant="body1" component="div">{props.body}</Typography>
     </Stack>
   </Stack>;
+};
+
+const HomeFeature = (props) => {
+  return <Stack direction='column'>
+    <Typography
+      color='accent'
+      sx={{ 
+        fontSize: {
+          md: 36, xs: 28
+        },
+        fontWeight: 600
+      }}
+    >{props.value}</Typography>
+
+    <Typography variant="body1" sx={{fontSize: {sm: 16, xs: 14}}} component="div">{props.title}</Typography>
+  </Stack>
 };
