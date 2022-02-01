@@ -49,6 +49,7 @@ const theme = createTheme({
       fontSize: 15,
       fontWeight: 500,
       marginLeft: 32,
+      cursor: 'pointer'
     },
     menuLinkHeader: {
       display: 'inline-block',
@@ -91,6 +92,11 @@ const theme = createTheme({
     menuLinkMobileBlue: {
       fontSize: 18,
       fontWeight: 600
+    },
+    linkSmall: {
+      position: 'relative',
+      fontSize: 12,
+      fontWeight: 600
     }
   },
   palette: {
@@ -128,6 +134,22 @@ const theme = createTheme({
               backgroundColor: '#8713e1',
             },
             color: '#fff'
+          },
+        },
+        {
+          props: { variant: 'textIcon' },
+          style: {
+            justifyContent: 'flex-start',
+            padding: 0,
+            fontWeight: 500,
+            fontSize: '14px',
+            textTransform: 'none',
+            color: '#2E2E2E',
+            width: 'min-content',
+            '&:hover': {
+              backgroundColor: 'transparent',
+              color: '#9C42E2'
+            },
           },
         },
       ],

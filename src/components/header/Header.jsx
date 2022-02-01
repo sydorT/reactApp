@@ -13,6 +13,7 @@ import {
   Drawer
 } from "@mui/material";
 import MenuLink from "./MenuLink";
+import Login from "../login/Login";
 
 import Logo from "./../../images/logo.svg";
 import BurgerMenu from "./../../images/burger-menu.svg";
@@ -25,14 +26,20 @@ import Settings from "./../../images/settings.svg";
 const Header = () => {
   // const theme = useTheme();
   // const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const isAuthorized = true;
+  const isAuthorized = false;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const menuMt = isAuthorized ? '48px' : '92px';
   const menuJustifyContent = isAuthorized ? 'flex-start' : 'space-between';
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     document.body.classList.toggle('modal-open');
+  };
+
+  const handleClose = () => {
+    setIsDialogOpen(false);
   };
 
   return (
@@ -68,7 +75,7 @@ const Header = () => {
                 </Stack>
               </>) : 
               <Stack direction="row" spacing={1.5}>
-                <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
+                <MenuLink onClick={() => setIsDialogOpen(true)} color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
                 <span className={styles.separator}>/</span>
                 <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Регистрация</MenuLink>
               </Stack>
@@ -149,7 +156,9 @@ const Header = () => {
           {isAuthorized
             ? <div className={styles.modalBgrAuth}></div>
             : <div className={styles.modalBgr}></div>}
-        </Drawer>
+        </Drawer>        
+
+        {!isAuthorized ? <Login open={isDialogOpen} onClose={handleClose}/> : null}
       </Container>
     </>
   );
