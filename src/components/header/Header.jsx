@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import {
   Container,
@@ -8,9 +8,9 @@ import {
   Button,
   Box,
   Typography,
+  Drawer,
   useTheme,
-  useMediaQuery,
-  Drawer
+  useMediaQuery
 } from "@mui/material";
 import MenuLink from "./MenuLink";
 import Login from "../login/Login";
@@ -24,17 +24,33 @@ import Settings from "./../../images/settings.svg";
 
 
 const Header = () => {
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const isAuthorized = false;
+  const isAuthorized = true;
+  const theme = useTheme();
+  const mediaSm = useMediaQuery(theme.breakpoints.down("sm"));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
 
   const menuMt = isAuthorized ? '48px' : '92px';
   const menuJustifyContent = isAuthorized ? 'flex-start' : 'space-between';
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+    document.body.classList.toggle('modal-open');
+    setIsDialogOpen(false);
+  };
+
+  useEffect(() => {
+    if (isDialogOpen && mediaSm) {
+      setIsMenuOpen(true);
+    } else {
+      setIsMenuOpen(false);
+    }
+  },[isDialogOpen, mediaSm]);
+
+  const openDialog = () => {
+    setIsDialogOpen(true);
+    setIsMenuOpen(false);
     document.body.classList.toggle('modal-open');
   };
 
@@ -75,7 +91,7 @@ const Header = () => {
                 </Stack>
               </>) : 
               <Stack direction="row" spacing={1.5}>
-                <MenuLink onClick={() => setIsDialogOpen(true)} color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
+                <MenuLink onClick={openDialog} color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
                 <span className={styles.separator}>/</span>
                 <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Регистрация</MenuLink>
               </Stack>
@@ -148,7 +164,7 @@ const Header = () => {
                 spacing={3}
                 sx={{position: 'relative', zIndex: '1', mt: 4}}
               >
-                <Button variant="contained" href="#">Вход</Button>
+                <Button variant="contained" onClick={openDialog}>Вход</Button>
                 <MenuLink href='/' color='link' underline='none' variant='menuLinkMobileBlue'>Регистрация</MenuLink>
               </Stack>) : null}
 
@@ -156,9 +172,13 @@ const Header = () => {
           {isAuthorized
             ? <div className={styles.modalBgrAuth}></div>
             : <div className={styles.modalBgr}></div>}
-        </Drawer>        
+        </Drawer>
 
-        {!isAuthorized ? <Login open={isDialogOpen} onClose={handleClose}/> : null}
+        {!isAuthorized ?
+          <>
+            <Login open={isDialogOpen} onClose={handleClose}/> 
+            {/* <Register open={isDialogOpen} onClose={handleClose}/>  */}
+          </> : null}
       </Container>
     </>
   );

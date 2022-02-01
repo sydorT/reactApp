@@ -10,7 +10,8 @@ import {
   TextField,
   Typography,
   IconButton,
-  link
+  useTheme,
+  useMediaQuery
 } from "@mui/material";
 
 import Arrow from "./../../images/accordion-arrow.svg";
@@ -25,8 +26,21 @@ const AuthDialog = styled(Dialog)(({ theme }) => ({
     borderRadius: '30px',
     margin: '15px',
     padding: '35px 55px 48px',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    '@media (max-width: 599.98px)': {
+      height: '100%',
+      margin: 0,
+      borderRadius: 0,
+      boxShadow: 'none',
+      overflowY: 'scroll',
+      padding: '35px 50px 40px'
+    },
   },
+  '&.MuiModal-root.MuiDialog-root': {
+    '@media (max-width: 599.98px)': {
+      top: '80px',
+    },
+  },  
   '& .MuiButton-startIcon': {
     margin: '0 4px 0 0'
   },
@@ -65,22 +79,29 @@ const CssTextField = styled(TextField)({
 });
 
 const Login = (props) => {
+  const theme = useTheme();
+  const mediaSm = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const hideBackdrop = mediaSm ? true : false;
 
   return <AuthDialog
+      hideBackdrop={hideBackdrop}
       open={props.open}
       onClose={props.onClose}
       sx={{
-        maxWidth: '442px',
+        maxWidth: {sm: '442px', xs: '100%'},
         margin: 'auto'
       }}
     >
-    <div className={styles.authbgr}></div>
-    <Button
-      variant="textIcon"
-      startIcon={<img src={Arrow} className={styles.buttonArrow} alt="Arrow icon" />}
-      onClick={props.onClose}
-      >Close</Button>
-
+    {!mediaSm ? (<>
+      <div className={styles.authbgr}></div>
+      <Button
+        variant="textIcon"
+        startIcon={<img src={Arrow} className={styles.buttonArrow} alt="Arrow icon" />}
+        onClick={props.onClose}
+        >Close</Button>
+    </>) : null}
+    
     <Typography sx={{textAlign: 'center', fontWeight: 600, fontSize: '32px', lineHeight: '41px', mt: '35px', mb: 2, color: 'secondary.main', position: 'relative'}}>Авторизация</Typography>
 
     <Stack direction='row' justifyContent='center'>

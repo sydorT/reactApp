@@ -34,7 +34,7 @@ const testimonials = [
   }
 ]
 
-export default function() {
+export default function(props) {
   const [show, setShow] = useState(false);
   const hiddenContainer = useRef(null);
 
