@@ -24,7 +24,7 @@ import Settings from "./../../images/settings.svg";
 
 
 const Header = () => {
-  const isAuthorized = true;
+  const isAuthorized = false;
   const theme = useTheme();
   const mediaSm = useMediaQuery(theme.breakpoints.down("sm"));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
