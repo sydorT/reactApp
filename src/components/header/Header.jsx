@@ -45,6 +45,7 @@ const Header = () => {
       setIsMenuOpen(true);
     } else {
       setIsMenuOpen(false);
+      document.body.classList.remove('modal-open');
     }
   },[isDialogOpen, mediaSm]);
 
