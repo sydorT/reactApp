@@ -59,14 +59,14 @@ const theme = createTheme({
       transition: '0.3s',
       '&:hover': {
         color: '#9C42E2',
-        transform: 'translateY(-4px)'
+        transform: 'translateY(-3px)'
       },
       '&::after': {
         content: "''",
         position: 'absolute',
         bottom: '-4px',
         height: '2px',
-        left: 0,
+        left: '-2.5%',
         right: 0,
         margin: 'auto',
         width: '0%',

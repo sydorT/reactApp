@@ -6,21 +6,29 @@ import {
   IconButton,
   Link,
   Button,
+  Box,
+  Typography,
   useTheme,
   useMediaQuery,
   Drawer
 } from "@mui/material";
+import MenuLink from "./MenuLink";
 
 import Logo from "./../../images/logo.svg";
 import BurgerMenu from "./../../images/burger-menu.svg";
 import BurgerMenuOpen from "./../../images/burger-menu-open.svg";
-import MenuLink from "./MenuLink";
+import Avatar from "./../../images/avatar-header.png";
+import Notification from "./../../images/notification.svg";
+import Settings from "./../../images/settings.svg";
+
 
 const Header = () => {
   // const theme = useTheme();
   // const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const isAuthorized = false;
+  const isAuthorized = true;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuMt = isAuthorized ? '48px' : '92px';
+  const menuJustifyContent = isAuthorized ? 'flex-start' : 'space-between';
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -47,12 +55,25 @@ const Header = () => {
               <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Контакты</MenuLink>
               <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Правила</MenuLink>
             </div>
-
-            <Stack direction="row" spacing={1.5}>
-              <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
-              <span className={styles.separator}>/</span>
-              <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Регистрация</MenuLink>
-            </Stack>
+            
+            {isAuthorized ? (
+              <>
+                <Stack direction="row" alignItems='center'>
+                  <Typography sx={{fontSize: 14, fontWeight: 600, color: 'secondary.main', mr: 3}}>126.41₽</Typography>
+                  <img src={Settings} alt="Settings icon" />
+                  <Box className={styles.notification}>
+                    <img src={Notification} alt="Notification icon" />
+                  </Box>
+                  <img src={Avatar} className={styles.profileImg} alt="Profile avatar" />
+                </Stack>
+              </>) : 
+              <Stack direction="row" spacing={1.5}>
+                <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
+                <span className={styles.separator}>/</span>
+                <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Регистрация</MenuLink>
+              </Stack>
+            }
+            
           </div>
 
           <IconButton sx={{ p: 0 }} onClick={toggleMenu}>
@@ -72,20 +93,48 @@ const Header = () => {
           open={isMenuOpen}
           onClose={() => setIsMenuOpen(false)}
         >
-          <Stack direction="column" justifyContent='space-between' sx={{height: '100%', pb: 12}}>
-
-              <Stack direction="column" spacing={4} mt={11.5} ml={8}>
-                <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
-                  <span className={styles.linkMobile}>Новости</span>
-                </MenuLink>
-                <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
-                  <span className={styles.linkMobile}>Контакты</span>
-                </MenuLink>
-                <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
-                  <span className={styles.linkMobile}>Правила</span>
-                </MenuLink>
+          <Stack direction="column" justifyContent={menuJustifyContent} sx={{height: '100%', pb: 12}}>
+            {isAuthorized ? (<>
+              <Stack direction="row" alignItems='center' justifyContent='space-between' sx={{maxWidth: '312px', px: 3, pt: 4}}>
+                <Stack direction="row" alignItems='center'>
+                  <img src={Avatar} className={styles.profileImgAuth} alt="Profile avatar" />
+                  <Box>
+                    <Typography sx={{fontSize: 16, fontWeight: 600, color: 'secondary.main'}}>Максим Барцов</Typography>
+                    <Typography sx={{fontSize: 14, fontWeight: 600, color: 'secondary.main'}}>126.41₽</Typography>
+                  </Box>
+                </Stack>
+                
+                <Stack direction="row" alignItems='center'>
+                  <img src={Settings} className={styles.settingsAuth} alt="Settings icon" />
+                  <Box className={styles.notificationAuth}>
+                    <img src={Notification} alt="Notification icon" />
+                  </Box>
+                </Stack>
               </Stack>
+            </>) : null}
 
+            <Stack direction="column" spacing={4} mt={menuMt} ml={8}>
+              {isAuthorized ? (<>
+                <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
+                  <span className={styles.linkMobile}>Задания</span>
+                </MenuLink>
+                <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
+                  <span className={styles.linkMobile}>Личный кабинет</span>
+                </MenuLink>
+              </>) : null}
+
+              <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
+                <span className={styles.linkMobile}>Новости</span>
+              </MenuLink>
+              <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
+                <span className={styles.linkMobile}>Контакты</span>
+              </MenuLink>
+              <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
+                <span className={styles.linkMobile}>Правила</span>
+              </MenuLink>
+            </Stack>
+
+            {!isAuthorized ? (
               <Stack 
                 direction='column'
                 alignItems='center'
@@ -94,10 +143,12 @@ const Header = () => {
               >
                 <Button variant="contained" href="#">Вход</Button>
                 <MenuLink href='/' color='link' underline='none' variant='menuLinkMobileBlue'>Регистрация</MenuLink>
-              </Stack>
+              </Stack>) : null}
 
-            </Stack>
-            <div className={styles.modalBgr}></div>
+          </Stack>
+          {isAuthorized
+            ? <div className={styles.modalBgrAuth}></div>
+            : <div className={styles.modalBgr}></div>}
         </Drawer>
       </Container>
     </>
