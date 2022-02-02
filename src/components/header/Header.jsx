@@ -36,7 +36,11 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    document.body.classList.toggle('modal-open');
+    if (isMenuOpen !== true) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
     setIsDialogOpen(false);
   };
 
@@ -49,7 +53,7 @@ const Header = () => {
   const openDialog = () => {
     setIsDialogOpen(true);
     setIsMenuOpen(false);
-    document.body.classList.toggle('modal-open');
+    document.body.classList.add('modal-open');
   };
 
   const handleClose = (event, reason) => {
@@ -57,6 +61,7 @@ const Header = () => {
       return;
     }
     setIsDialogOpen(false);
+    document.body.classList.remove('modal-open');
   };
 
   return (
