@@ -44,43 +44,11 @@ const Login = (props) => {
     >
     <CssTextField
       margin='none'
-      label='First Name'
-      type='text'
-      fullWidth
-      variant='standard'
-      sx={{ mt: '0px' }}
-    />
-    <CssTextField
-      margin='none'
-      label='Last Name'
-      type='text'
-      fullWidth
-      variant='standard'
-      sx={{ mt: '7px' }}
-    />
-    <CssTextField
-      margin='none'
       label='Username'
       type='text'
       fullWidth
       variant='standard'
-      sx={{ mt: '7px' }}
-    />
-    <CssTextField
-      margin='none'
-      label='Email'
-      type='email'
-      fullWidth
-      variant='standard'
-      sx={{ mt: '7px' }}
-    />
-    <CssTextField
-      margin='none'
-      label="Пароль"
-      type="password"
-      fullWidth
-      variant="standard"
-      sx={{ mt: '7px' }}
+      sx={{ mt: '0px' }}
     />
     <CssTextField
       margin='none'

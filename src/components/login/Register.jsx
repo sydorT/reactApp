@@ -43,23 +43,35 @@ const Register = (props) => {
     >
     <CssTextField
       margin='none'
-      label="Email"
-      type="email"
+      label='First Name'
+      type='text'
       fullWidth
-      variant="standard"
-      sx={{
-        mt: '36px'
-      }}
+      variant='standard'
+      sx={{ mt: '0px' }}
     />
     <CssTextField
       margin='none'
-      label="Email"
-      type="email"
+      label='Last Name'
+      type='text'
       fullWidth
-      variant="standard"
-      sx={{
-        mt: '36px'
-      }}
+      variant='standard'
+      sx={{ mt: '7px' }}
+    />
+    <CssTextField
+      margin='none'
+      label='Username'
+      type='text'
+      fullWidth
+      variant='standard'
+      sx={{ mt: '7px' }}
+    />
+    <CssTextField
+      margin='none'
+      label='Email'
+      type='email'
+      fullWidth
+      variant='standard'
+      sx={{ mt: '7px' }}
     />
     <CssTextField
       margin='none'
@@ -67,9 +79,15 @@ const Register = (props) => {
       type="password"
       fullWidth
       variant="standard"
-      sx={{
-        my: '20px'
-      }}
+      sx={{ mt: '7px' }}
+    />
+    <CssTextField
+      margin='none'
+      label="Пароль повторіть"
+      type="password"
+      fullWidth
+      variant="standard"
+      sx={{ mt: '7px', mb: 3 }}
     />
   </Popup>
 };
