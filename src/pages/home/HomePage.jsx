@@ -221,8 +221,8 @@ export default function(props) {
                     <img src={Chart} className={styles.chartImg} alt="Chart image" />
                     <Box sx={{textAlign: 'center', position: 'relative', zIndex: '1'}}>
                       <Button
-                        sx={{fontSize: '8px', py: '5px', px: '19px', mt: '10px'}}
-                        variant="contained"
+                        sx={{fontSize: '8px', py: '5px', px: '19px', mt: '10px', cursor: 'auto'}}
+                        variant="containedDisabled"
                       >Запустить еще раз</Button>
                     </Box>
                     <div className={styles.block}></div>

@@ -152,6 +152,17 @@ const theme = createTheme({
             },
           },
         },
+        {
+          props: { variant: 'containedDisabled' },
+          style: {
+            textTransform: 'none',
+            backgroundColor: '#9C42E2',
+            '&:hover': {
+              backgroundColor: '#9C42E2',
+            },
+            color: '#fff'
+          },
+        },
       ],
     },
   },
