@@ -30,11 +30,23 @@ function reducer(state, action) {
         };
       }
     }
-    case "closeDialog": {
+    case "dialogClosed": {
       return {
         ...state,
         isLoginOpen: false,
         isRegisterOpen: false,
+      };
+    }
+    case "authenticated": {
+      return {
+        ...state,
+        isAuthorized: true,
+      };
+    }
+    case "unauthorized": {
+      return {
+        ...state,
+        isAuthorized: false,
       };
     }
     default: {
@@ -48,6 +60,7 @@ function HeaderProvider({ children }) {
     isMenuOpen: false,
     isLoginOpen: false,
     isRegisterOpen: false,
+    isAuthorized: false,
   };
   const [state, dispatch] = React.useReducer(reducer, defaultState);
 

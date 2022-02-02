@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect} from "react";
 import styles from "./Header.module.css";
 import {
   Container,
@@ -13,19 +13,32 @@ import {
 import MenuLink from "./MenuLink";
 import Login from "../login/Login";
 import Register from "../login/Register";
+import { useHeader } from "../../providers/HeaderProvider.js";
+import Cookies from 'js-cookie';
+import AccountMenu from "./AccountMenu";
+
 import Logo from "./../../images/logo.svg";
 import BurgerMenu from "./../../images/burger-menu.svg";
 import BurgerMenuOpen from "./../../images/burger-menu-open.svg";
 import Avatar from "./../../images/avatar-header.png";
 import Notification from "./../../images/notification.svg";
 import Settings from "./../../images/settings.svg";
-import { useHeader } from "../../providers/HeaderProvider.js";
 
 const Header = () => {
-  const isAuthorized = false;
   const [headerState, dispatch] = useHeader();
-  const menuMt = isAuthorized ? '48px' : '92px';
-  const menuJustifyContent = isAuthorized ? 'flex-start' : 'space-between';
+  const menuMt = headerState.isAuthorized ? '48px' : '92px';
+  const menuJustifyContent = headerState.isAuthorized ? 'flex-start' : 'space-between';
+
+  const readCookie = () => {
+    const user = Cookies.get('user');
+    if (user) {
+      dispatch({type: 'authenticated'});
+    }
+  }
+
+  useEffect(() => {
+    readCookie();
+  }, []);  
 
   const toggleMenu = () => {
     dispatch({type: 'menuToggled'});
@@ -45,7 +58,7 @@ const Header = () => {
     if (reason && reason === 'backdropClick') {
       return;
     }
-    dispatch({type: 'closeDialog'});
+    dispatch({type: 'dialogClosed'});
     document.body.classList.remove('modal-open');
   };
 
@@ -59,7 +72,7 @@ const Header = () => {
 
           <div className={styles.navWrapper}>
             <div className={styles.nav}>
-              {isAuthorized ? (
+              {headerState.isAuthorized ? (
                 <>
                   <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Задания</MenuLink>
                   <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Личный кабинет</MenuLink>
@@ -70,7 +83,7 @@ const Header = () => {
               <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Правила</MenuLink>
             </div>
             
-            {isAuthorized ? (
+            {headerState.isAuthorized ? (
               <>
                 <Stack direction="row" alignItems='center'>
                   <Typography sx={{fontSize: 14, fontWeight: 600, color: 'secondary.main', mr: 3}}>126.41₽</Typography>
@@ -78,7 +91,7 @@ const Header = () => {
                   <Box className={styles.notification}>
                     <img src={Notification} alt="Notification icon" />
                   </Box>
-                  <img src={Avatar} className={styles.profileImg} alt="Profile avatar" />
+                  <AccountMenu />
                 </Stack>
               </>) : 
               <Stack direction="row" spacing={1.5}>
@@ -107,7 +120,7 @@ const Header = () => {
           open={headerState.isMenuOpen}
         >
           <Stack direction="column" justifyContent={menuJustifyContent} sx={{height: '100%', pb: 12}}>
-            {isAuthorized ? (<>
+            {headerState.isAuthorized ? (<>
               <Stack direction="row" alignItems='center' justifyContent='space-between' sx={{maxWidth: '312px', px: 3, pt: 4}}>
                 <Stack direction="row" alignItems='center'>
                   <img src={Avatar} className={styles.profileImgAuth} alt="Profile avatar" />
@@ -127,7 +140,7 @@ const Header = () => {
             </>) : null}
 
             <Stack direction="column" spacing={4} mt={menuMt} ml={8}>
-              {isAuthorized ? (<>
+              {headerState.isAuthorized ? (<>
                 <MenuLink href='/' color='secondary' underline='none' variant='menuLinkMobile'>
                   <span className={styles.linkMobile}>Задания</span>
                 </MenuLink>
@@ -147,7 +160,7 @@ const Header = () => {
               </MenuLink>
             </Stack>
 
-            {!isAuthorized ? (
+            {!headerState.isAuthorized ? (
               <Stack 
                 direction='column'
                 alignItems='center'
@@ -159,12 +172,12 @@ const Header = () => {
               </Stack>) : null}
 
           </Stack>
-          {isAuthorized
+          {headerState.isAuthorized
             ? <div className={styles.modalBgrAuth}></div>
             : <div className={styles.modalBgr}></div>}
         </Drawer>
 
-        {!isAuthorized ?
+        {!headerState.isAuthorized ?
           <>
             <Login
               open={headerState.isLoginOpen}

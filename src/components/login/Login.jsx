@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Popup from "./Popup";
-import {
-  TextField
-} from "@mui/material";
+import { TextField } from "@mui/material";
+import Cookies from 'js-cookie';
+import { useHeader } from "../../providers/HeaderProvider.js";
 
 const CssTextField = styled(TextField)({
   '&label.Mui-focused': {
@@ -31,6 +31,24 @@ const CssTextField = styled(TextField)({
 });
 
 const Login = (props) => {
+  const [headerState, dispatch] = useHeader();
+  const [user, setUser] = useState({username: '', password: ''});
+  const apiBaseUrl = 'http://ec2-54-161-136-170.compute-1.amazonaws.com:8082';
+
+  async function handleSubmit() {
+    const res = await fetch(`${apiBaseUrl}/v1/api/user/login`, {
+      method: "post",
+      body: JSON.stringify({ username: user.username, password: user.password, }),
+      headers: {'Content-Type': 'application/json'},
+    })
+    const response = await res.json();
+    if(response){
+      Cookies.set('user', response.token);
+      dispatch({type: 'authenticated'});
+      dispatch({type: 'dialogClosed'});
+      document.body.classList.remove('modal-open');
+    }
+  }
 
   return <Popup
       open={props.open}
@@ -40,6 +58,7 @@ const Login = (props) => {
       linkTitle={props.linkTitle}
       forgotPassword
       isAccount={props.isAccount}
+      onClick={handleSubmit}
     >
     <CssTextField
       margin='none'
@@ -48,14 +67,18 @@ const Login = (props) => {
       fullWidth
       variant='standard'
       sx={{ mt: '0px' }}
+      value={user.username}
+      onChange={e => setUser({ ...user, username: e.target.value })}
     />
     <CssTextField
       margin='none'
-      label="Пароль повторіть"
+      label="Пароль"
       type="password"
       fullWidth
       variant="standard"
       sx={{ mt: '7px', mb: 3 }}
+      value={user.password}
+      onChange={e => setUser({ ...user, password: e.target.value })}
     />
   </Popup>
 };

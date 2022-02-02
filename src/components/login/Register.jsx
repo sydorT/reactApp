@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Popup from "./Popup";
-import { useQuery } from 'react-query';
-import {
-  TextField
-} from "@mui/material";
+import { TextField } from "@mui/material";
+import { useHeader } from "../../providers/HeaderProvider.js";
 
 const CssTextField = styled(TextField)({
   '&label.Mui-focused': {
@@ -32,7 +30,8 @@ const CssTextField = styled(TextField)({
 });
 
 const Register = (props) => {
-  const [user, setUser] = useState({firstName: '', lastName: '', userName: '', email: '', password: ''});
+  const [headerState, dispatch] = useHeader();
+  const [user, setUser] = useState({firstName: '', lastName: '', username: '', email: '', password: ''});
   const [passwordRep, setPasswordRep] = useState('');
   const [errors, setErrors] = useState([]);
   const apiBaseUrl = 'http://ec2-54-161-136-170.compute-1.amazonaws.com:8082';
@@ -40,13 +39,12 @@ const Register = (props) => {
   async function handleSubmit() {
     const res = await fetch(`${apiBaseUrl}/v1/api/user/registration`, {
       method: "post",
-      body: JSON.stringify({ userName: user.userName, lastName: user.lastName, firstName: user.firstName, email: user.email, password: user.password }),
+      body: JSON.stringify({ username: user.username, lastName: user.lastName, firstName: user.firstName, email: user.email, password: user.password }),
       headers: {'Content-Type': 'application/json'},
     })
     const response = await res.json();
-    if(response.result){
-      console.log(response.result);
-      // navigate('/');
+    if(response){
+      dispatch({type: 'openDialog', payload: 'login'});
     } else {
       setErrors(response.errors);
     }
@@ -92,8 +90,8 @@ const Register = (props) => {
       fullWidth
       variant='standard'
       sx={{ mt: '7px' }}
-      value={user.userName}
-      onChange={e => setUser({ ...user, userName: e.target.value })}
+      value={user.username}
+      onChange={e => setUser({ ...user, username: e.target.value })}
     />
     <CssTextField
       margin='none'
