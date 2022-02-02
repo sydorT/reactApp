@@ -26,7 +26,7 @@ import Settings from "./../../images/settings.svg";
 const Header = () => {
   const isAuthorized = false;
   const theme = useTheme();
-  const mediaSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const mediaSm = useMediaQuery(theme.breakpoints.down("md"));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -42,10 +42,7 @@ const Header = () => {
 
   useEffect(() => {
     if (isDialogOpen && mediaSm) {
-      setIsMenuOpen(true);
-    } else {
       setIsMenuOpen(false);
-      document.body.classList.remove('modal-open');
     }
   },[isDialogOpen, mediaSm]);
 
@@ -55,7 +52,10 @@ const Header = () => {
     document.body.classList.toggle('modal-open');
   };
 
-  const handleClose = () => {
+  const handleClose = (event, reason) => {
+    if (reason && reason == 'backdropClick') {
+      return;
+    }
     setIsDialogOpen(false);
   };
 

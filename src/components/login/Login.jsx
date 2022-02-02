@@ -54,7 +54,7 @@ const AuthDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
+  '&label.Mui-focused': {
     color: '#A1A1A1',
   },
   '& .MuiInput-underline:after': {
@@ -86,8 +86,10 @@ const Login = (props) => {
 
   return <AuthDialog
       hideBackdrop={hideBackdrop}
+      disableEscapeKeyDown={true}
       open={props.open}
       onClose={props.onClose}
+      transitionDuration={0}
       sx={{
         maxWidth: {sm: '442px', xs: '100%'},
         margin: 'auto'
