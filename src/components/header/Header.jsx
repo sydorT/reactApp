@@ -8,51 +8,36 @@ import {
   Button,
   Box,
   Typography,
-  Drawer,
-  useTheme,
-  useMediaQuery
+  Drawer
 } from "@mui/material";
 import MenuLink from "./MenuLink";
 import Login from "../login/Login";
-
+import Register from "../login/Register";
 import Logo from "./../../images/logo.svg";
 import BurgerMenu from "./../../images/burger-menu.svg";
 import BurgerMenuOpen from "./../../images/burger-menu-open.svg";
 import Avatar from "./../../images/avatar-header.png";
 import Notification from "./../../images/notification.svg";
 import Settings from "./../../images/settings.svg";
-
+import { useHeader } from "../../providers/HeaderProvider.js";
 
 const Header = () => {
   const isAuthorized = false;
-  const theme = useTheme();
-  const mediaSm = useMediaQuery(theme.breakpoints.down("md"));
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-
+  const [headerState, dispatch] = useHeader();
   const menuMt = isAuthorized ? '48px' : '92px';
   const menuJustifyContent = isAuthorized ? 'flex-start' : 'space-between';
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    if (isMenuOpen !== true) {
+    dispatch({type: 'menuToggled'});
+    if (headerState.isMenuOpen !== true) {
       document.body.classList.add('modal-open');
     } else {
       document.body.classList.remove('modal-open');
     }
-    setIsDialogOpen(false);
   };
 
-  useEffect(() => {
-    if (isDialogOpen && mediaSm) {
-      setIsMenuOpen(false);
-    }
-  },[isDialogOpen, mediaSm]);
-
-  const openDialog = () => {
-    setIsDialogOpen(true);
-    setIsMenuOpen(false);
+  const openDialog = (popup) => {
+    dispatch({type: 'openDialog', payload: popup});
     document.body.classList.add('modal-open');
   };
 
@@ -60,7 +45,7 @@ const Header = () => {
     if (reason && reason === 'backdropClick') {
       return;
     }
-    setIsDialogOpen(false);
+    dispatch({type: 'closeDialog'});
     document.body.classList.remove('modal-open');
   };
 
@@ -97,16 +82,16 @@ const Header = () => {
                 </Stack>
               </>) : 
               <Stack direction="row" spacing={1.5}>
-                <MenuLink onClick={openDialog} color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
+                <MenuLink onClick={() => openDialog('login')} color='primary' underline='hover' variant='menuLink'>Вход</MenuLink>
                 <span className={styles.separator}>/</span>
-                <MenuLink href='/' color='primary' underline='hover' variant='menuLink'>Регистрация</MenuLink>
+                <MenuLink onClick={() => openDialog('register')} color='primary' underline='hover' variant='menuLink'>Регистрация</MenuLink>
               </Stack>
             }
             
           </div>
 
           <IconButton sx={{ p: 0 }} onClick={toggleMenu}>
-            {isMenuOpen ? (
+            {headerState.isMenuOpen ? (
               <img src={BurgerMenuOpen} className={styles.burgerIcon} alt="" />
             ) : (
               <img src={BurgerMenu} className={styles.burgerIcon} alt="" />
@@ -119,8 +104,7 @@ const Header = () => {
           sx={{ mt: 10, display: {md: 'none'} }}
           hideBackdrop={true}
           anchor={'right'}
-          open={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
+          open={headerState.isMenuOpen}
         >
           <Stack direction="column" justifyContent={menuJustifyContent} sx={{height: '100%', pb: 12}}>
             {isAuthorized ? (<>
@@ -170,8 +154,8 @@ const Header = () => {
                 spacing={3}
                 sx={{position: 'relative', zIndex: '1', mt: 4}}
               >
-                <Button variant="contained" onClick={openDialog}>Вход</Button>
-                <MenuLink href='/' color='link' underline='none' variant='menuLinkMobileBlue'>Регистрация</MenuLink>
+                <Button variant="contained" onClick={() => openDialog('login')}>Вход</Button>
+                <MenuLink onClick={() => openDialog('register')} color='link' underline='none' variant='menuLinkMobileBlue'>Регистрация</MenuLink>
               </Stack>) : null}
 
           </Stack>
@@ -182,8 +166,23 @@ const Header = () => {
 
         {!isAuthorized ?
           <>
-            <Login open={isDialogOpen} onClose={handleClose}/> 
-            {/* <Register open={isDialogOpen} onClose={handleClose}/>  */}
+            <Login
+              open={headerState.isLoginOpen}
+              onClose={handleClose}
+              title='Авторизация'
+              isAccount='Еще нет аккаунта?'
+              buttonTitle='Войти'
+              linkTitle='Регистрация'
+              forgotPassword
+            />
+            <Register
+              open={headerState.isRegisterOpen}
+              onClose={handleClose}
+              title='Регистрация'
+              isAccount='Уже есть аккаунт?'
+              buttonTitle='Зарегистрироваться'
+              linkTitle='Войти'
+            /> 
           </> : null}
       </Container>
     </>

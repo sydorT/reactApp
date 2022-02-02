@@ -31,17 +31,26 @@ const CssTextField = styled(TextField)({
   }
 });
 
-const Login = (props) => {
+const Register = (props) => {
 
   return <Popup
       open={props.open}
       onClose={props.onClose}
       title={props.title}
+      isAccount={props.isAccount}
       buttonTitle={props.buttonTitle}
       linkTitle={props.linkTitle}
-      forgotPassword
-      isAccount={props.isAccount}
     >
+    <CssTextField
+      margin='none'
+      label="Email"
+      type="email"
+      fullWidth
+      variant="standard"
+      sx={{
+        mt: '36px'
+      }}
+    />
     <CssTextField
       margin='none'
       label="Email"
@@ -65,4 +74,4 @@ const Login = (props) => {
   </Popup>
 };
 
-export default Login;
+export default Register;
