@@ -53,7 +53,7 @@ const Header = () => {
   };
 
   const handleClose = (event, reason) => {
-    if (reason && reason == 'backdropClick') {
+    if (reason && reason === 'backdropClick') {
       return;
     }
     setIsDialogOpen(false);
