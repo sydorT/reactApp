@@ -113,7 +113,7 @@ const Header = () => {
           elevation={0}
           sx={{ mt: 10, display: {md: 'none'} }}
           hideBackdrop={true}
-          anchor={'bottom'}
+          anchor={'right'}
           open={isMenuOpen}
           onClose={() => setIsMenuOpen(false)}
         >

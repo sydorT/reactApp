@@ -65,11 +65,11 @@ const CssTextField = styled(TextField)({
     borderColor: '#E8E8E8',
   },
   '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-    borderColor: '#000',
+    borderColor: '#9C42E2',
     borderWidth: '1px'
   },
   '& .MuiInput-underline.Mui-focused:after': {
-    borderColor: '#000',
+    borderColor: '#9C42E2',
   },
   '& .MuiInputLabel-root': {
     color: '#A1A1A1',
