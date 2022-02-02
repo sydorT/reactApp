@@ -3,7 +3,11 @@
   transform: rotate(90deg);
 }
 
-.authbgr {
+.popupHeader {
+  padding: 35px 55px 0;
+}
+
+.authbgrLogin {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -11,4 +15,21 @@
   background-size: 100%;
   width: 100%;
   height: 352px;
+}
+
+.authbgrRegister{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: url('../../images/auth-bgr-register.svg') no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 365px;
+}
+
+@media (max-width: 600px) {
+  .popupHeader {
+    padding: 0 15px 0;
+  }
 }
