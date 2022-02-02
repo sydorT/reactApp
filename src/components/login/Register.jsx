@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from "./Login.module.css";
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Popup from "./Popup";
+import { useQuery } from 'react-query';
 import {
   TextField
 } from "@mui/material";
@@ -32,6 +32,29 @@ const CssTextField = styled(TextField)({
 });
 
 const Register = (props) => {
+  const [user, setUser] = useState({firstName: '', lastName: '', userName: '', email: '', password: ''});
+  const [passwordRep, setPasswordRep] = useState('');
+  const [errors, setErrors] = useState([]);
+  const apiBaseUrl = 'http://ec2-54-161-136-170.compute-1.amazonaws.com:8082';
+
+  async function handleSubmit() {
+    const res = await fetch(`${apiBaseUrl}/v1/api/user/registration`, {
+      method: "post",
+      body: JSON.stringify({ userName: user.userName, lastName: user.lastName, firstName: user.firstName, email: user.email, password: user.password }),
+      headers: {'Content-Type': 'application/json'},
+    })
+    const response = await res.json();
+    if(response.result){
+      console.log(response.result);
+      // navigate('/');
+    } else {
+      setErrors(response.errors);
+    }
+  }
+
+  function arePasswordsEqual(){
+    return user.password === passwordRep;
+  }
 
   return <Popup
       open={props.open}
@@ -40,6 +63,7 @@ const Register = (props) => {
       isAccount={props.isAccount}
       buttonTitle={props.buttonTitle}
       linkTitle={props.linkTitle}
+      onClick={handleSubmit}
     >
     <CssTextField
       margin='none'
@@ -48,6 +72,8 @@ const Register = (props) => {
       fullWidth
       variant='standard'
       sx={{ mt: '0px' }}
+      value={user.firstName}
+      onChange={e => setUser({ ...user, firstName: e.target.value })}
     />
     <CssTextField
       margin='none'
@@ -56,6 +82,8 @@ const Register = (props) => {
       fullWidth
       variant='standard'
       sx={{ mt: '7px' }}
+      value={user.lastName}
+      onChange={e => setUser({ ...user, lastName: e.target.value })}
     />
     <CssTextField
       margin='none'
@@ -64,6 +92,8 @@ const Register = (props) => {
       fullWidth
       variant='standard'
       sx={{ mt: '7px' }}
+      value={user.userName}
+      onChange={e => setUser({ ...user, userName: e.target.value })}
     />
     <CssTextField
       margin='none'
@@ -72,6 +102,8 @@ const Register = (props) => {
       fullWidth
       variant='standard'
       sx={{ mt: '7px' }}
+      value={user.email}
+      onChange={e => setUser({ ...user, email: e.target.value })}
     />
     <CssTextField
       margin='none'
@@ -80,6 +112,8 @@ const Register = (props) => {
       fullWidth
       variant="standard"
       sx={{ mt: '7px' }}
+      value={user.password}
+      onChange={e => setUser({ ...user, password: e.target.value })}
     />
     <CssTextField
       margin='none'
@@ -88,6 +122,8 @@ const Register = (props) => {
       fullWidth
       variant="standard"
       sx={{ mt: '7px', mb: 3 }}
+      value={user.passwordRep}
+      onChange={e => setPasswordRep({ ...user, passwordRep: e.target.value })}
     />
   </Popup>
 };

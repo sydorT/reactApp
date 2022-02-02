@@ -131,7 +131,7 @@ const Popup = (props) => {
           <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
           <MenuLink onClick={linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
         </Stack>
-        <Button variant="contained" href="#">{props.buttonTitle}</Button>
+        <Button onClick={props.onClick} variant="contained">{props.buttonTitle}</Button>
       </Stack>
     </DialogContent>
   </AuthDialog>;
