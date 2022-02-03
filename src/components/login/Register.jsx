@@ -34,7 +34,7 @@ const Register = (props) => {
   const [user, setUser] = useState({firstName: '', lastName: '', username: '', email: '', password: ''});
   const [passwordRep, setPasswordRep] = useState('');
   const [errors, setErrors] = useState([]);
-  const apiBaseUrl = 'http://ec2-54-161-136-170.compute-1.amazonaws.com:8082';
+  const apiBaseUrl = '//ec2-54-161-136-170.compute-1.amazonaws.com:8082';
 
   async function handleSubmit() {
     const res = await fetch(`${apiBaseUrl}/v1/api/user/registration`, {

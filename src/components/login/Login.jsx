@@ -33,7 +33,7 @@ const CssTextField = styled(TextField)({
 const Login = (props) => {
   const [headerState, dispatch] = useHeader();
   const [user, setUser] = useState({username: '', password: ''});
-  const apiBaseUrl = 'http://ec2-54-161-136-170.compute-1.amazonaws.com:8082';
+  const apiBaseUrl = '//ec2-54-161-136-170.compute-1.amazonaws.com:8082';
 
   async function handleSubmit() {
     const res = await fetch(`${apiBaseUrl}/v1/api/user/login`, {
