@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
+import styles from "./Login.module.css";
 import Popup from "./Popup";
 import { TextField } from "@mui/material";
 import Cookies from 'js-cookie';
 import { useHeader } from "../../providers/HeaderProvider.js";
+import { Controller, useForm } from "react-hook-form";
 
 const CssTextField = styled(TextField)({
   '&label.Mui-focused': {
@@ -27,59 +29,107 @@ const CssTextField = styled(TextField)({
     color: '#A1A1A1',
     fontSize: '14px',
     fontWeight: 500
+  },
+  '& .MuiFormHelperText-root': {
+    color: '#E74C3C',
+    fontWeight: 600,
+    fontSize: '12px',
+    lineHeight: '14px',
+    marginTop: '8px'
   }
 });
 
 const Login = (props) => {
   const [headerState, dispatch] = useHeader();
-  const [user, setUser] = useState({username: '', password: ''});
+  // const [errors, setErrors] = useState([]);
+  const [errorUnauthorized, setErrorUnauthorized] = useState([]);
   const apiBaseUrl = '//ec2-54-161-136-170.compute-1.amazonaws.com:8082';
 
-  async function handleSubmit() {
-    const res = await fetch(`${apiBaseUrl}/v1/api/user/login`, {
-      method: "post",
-      body: JSON.stringify({ username: user.username, password: user.password, }),
-      headers: {'Content-Type': 'application/json'},
-    })
-    const response = await res.json();
-    if(response){
-      Cookies.set('user', response.token);
-      dispatch({type: 'authenticated'});
-      dispatch({type: 'dialogClosed'});
-      document.body.classList.remove('modal-open');
-    }
-  }
+  const { handleSubmit, formState: { errors }, reset, control } = useForm();
+  const onSubmit = (data) => {
+    (async () => {
+      const res = await fetch(`${apiBaseUrl}/v1/api/user/login`, {
+        method: "post",
+        body: JSON.stringify(data),
+        headers: {'Content-Type': 'application/json'},
+      })
+      const response = await res.json();
+      console.log(errors.username);
+      if(response.token){
+        Cookies.set('user', response.token);
+        dispatch({type: 'authenticated'});
+        dispatch({type: 'dialogClosed'});
+        document.body.classList.remove('modal-open');
+      }
+      else if (res.status === 401){
+        setErrorUnauthorized('Invalid password or login');
+      }
+      // else {
+      //   setErrors(response.fieldErrors || []);
+      // }
+    })();
+  };  
+
+  // function getErrorMessage(field) {
+  //   const arrError = errors.filter((item) => item.field === field);
+  //   if (arrError.length > 0) {
+  //     return arrError[0].message;
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   return <Popup
-      open={props.open}
-      onClose={props.onClose}
-      title={props.title}
-      buttonTitle={props.buttonTitle}
-      linkTitle={props.linkTitle}
-      forgotPassword
-      isAccount={props.isAccount}
-      onClick={handleSubmit}
-    >
-    <CssTextField
-      margin='none'
-      label='Username'
-      type='text'
-      fullWidth
-      variant='standard'
-      sx={{ mt: '0px' }}
-      value={user.username}
-      onChange={e => setUser({ ...user, username: e.target.value })}
-    />
-    <CssTextField
-      margin='none'
-      label="Пароль"
-      type="password"
-      fullWidth
-      variant="standard"
-      sx={{ mt: '7px', mb: 3 }}
-      value={user.password}
-      onChange={e => setUser({ ...user, password: e.target.value })}
-    />
+    open={props.open}
+    onClose={props.onClose}
+    title={props.title}
+    buttonTitle={props.buttonTitle}
+    linkTitle={props.linkTitle}
+    forgotPassword
+    isAccount={props.isAccount}
+    onClick={handleSubmit(onSubmit)}
+  >
+    <div className={styles.errorUnauthorized}>{errorUnauthorized}</div>
+
+    <Controller
+        name={"username"}
+        control={control}
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <CssTextField
+            // helperText={getErrorMessage('username')}
+            // required={true}
+            margin='none'
+            label='Username'
+            type='text'
+            fullWidth
+            variant='standard'
+            sx={{ mt: '0px' }}
+            value={value || ''}
+            onChange={onChange}
+          />
+        )}
+      />
+
+      <Controller
+        name={"password"}
+        control={control}
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <CssTextField
+            // helperText={getErrorMessage('password')}
+            // required={true}
+            margin='none'
+            label="Пароль"
+            type="password"
+            fullWidth
+            variant="standard"
+            sx={{ mt: '7px', mb: 3 }}
+            value={value || ''}
+            onChange={onChange}
+          />
+        )}
+      />
   </Popup>
 };
 

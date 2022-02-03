@@ -116,24 +116,27 @@ const Popup = (props) => {
         </IconButton>
       </Stack>
     </div>
-
-    <DialogContent>
-      {props.children}
-      {props.forgotPassword && <MenuLink href='/' color='link' underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
-      
-      <Stack 
-        direction='column'
-        alignItems='center'
-        spacing={3}
-        sx={{position: 'relative', zIndex: '1', mt: 8}}
-      > 
-        <Stack direction='row' justifyContent='center' alignItems='center'>
-          <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
-          <MenuLink onClick={linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
+    
+    <form>
+      <DialogContent>
+        {props.children}
+        {props.forgotPassword && <MenuLink href='/' color='link' underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
+        
+        <Stack 
+          direction='column'
+          alignItems='center'
+          spacing={3}
+          sx={{position: 'relative', zIndex: '1', mt: 8}}
+        > 
+          <Stack direction='row' justifyContent='center' alignItems='center'>
+            <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
+            <MenuLink onClick={linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
+          </Stack>
+          <Button onClick={props.onClick} variant="contained">{props.buttonTitle}</Button>
         </Stack>
-        <Button onClick={props.onClick} variant="contained">{props.buttonTitle}</Button>
-      </Stack>
-    </DialogContent>
+      </DialogContent>
+    </form>
+    
   </AuthDialog>;
 };
 
