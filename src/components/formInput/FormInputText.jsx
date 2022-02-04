@@ -33,21 +33,18 @@ const FormInputText = ({ name, control, rules, muiProps }) => {
     name={name}
     control={control}
     rules={rules}
-    // rules={{ required: true }}
-    // render={args => console.log(args)}
     render={({ field: { onChange, value }, fieldState}) => (
       <>
-      {console.log(fieldState)}
-      <CssTextField
-        {...muiProps}
-        helperText={fieldState.error && fieldState.error.message}
-        margin='none'
-        fullWidth
-        variant='standard'
-        sx={{ mt: '0px' }}
-        value={value || ''}
-        onChange={onChange}
-      />
+        <CssTextField
+          {...muiProps}
+          helperText={fieldState.error && fieldState.error.message}
+          margin='none'
+          fullWidth
+          variant='standard'
+          sx={{ mt: '0px' }}
+          value={value || ''}
+          onChange={onChange}
+        />
       </>
     )}
   />;

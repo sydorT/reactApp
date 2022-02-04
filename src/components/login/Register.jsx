@@ -7,11 +7,11 @@ import { register } from "./requests.js";
 
 const Register = (props) => {
   const [headerState, dispatch] = useHeader();
-  const { handleSubmit, formState: { errors }, reset, control, setError, watch } = useForm();
+  const { handleSubmit, reset, control, setError, watch } = useForm();
   const password = watch('password');
 
   const onSubmit = async (data) => {
-      let { res, response } = register(data);
+      let { res, response } = await register(data);
       console.log(res);
       if(res.status === 200) {
         

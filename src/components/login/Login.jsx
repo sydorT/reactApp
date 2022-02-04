@@ -14,7 +14,7 @@ const Login = (props) => {
 
   const { handleSubmit, reset, control, setError } = useForm();
   const onSubmit = async (data) => {
-    const response = login(data);
+    const response = await login(data);
 
     if(response.token){
       Cookies.set('user', response.token);
