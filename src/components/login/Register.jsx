@@ -1,57 +1,27 @@
-import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
+import React from 'react';
 import Popup from "./Popup";
-import { TextField } from "@mui/material";
 import { useHeader } from "../../providers/HeaderProvider.js";
-
-const CssTextField = styled(TextField)({
-  '&label.Mui-focused': {
-    color: '#A1A1A1',
-  },
-  '& .MuiInput-underline:after': {
-    borderColor: '#E8E8E8',
-    borderWidth: '1px'
-  },
-  '& .MuiInput-underline:before': {
-    borderColor: '#E8E8E8',
-  },
-  '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-    borderColor: '#9C42E2',
-    borderWidth: '1px'
-  },
-  '& .MuiInput-underline.Mui-focused:after': {
-    borderColor: '#9C42E2',
-  },
-  '& .MuiInputLabel-root': {
-    color: '#A1A1A1',
-    fontSize: '14px',
-    fontWeight: 500
-  }
-});
+import FormInputText from "./../formInput/FormInputText";
+import { Controller, useForm } from "react-hook-form";
+import { register } from "./requests.js";
 
 const Register = (props) => {
   const [headerState, dispatch] = useHeader();
-  const [user, setUser] = useState({firstName: '', lastName: '', username: '', email: '', password: ''});
-  const [passwordRep, setPasswordRep] = useState('');
-  const [errors, setErrors] = useState([]);
-  const apiBaseUrl = '//ec2-54-161-136-170.compute-1.amazonaws.com:8082';
+  const { handleSubmit, formState: { errors }, reset, control, setError, watch } = useForm();
+  const password = watch('password');
 
-  async function handleSubmit() {
-    const res = await fetch(`${apiBaseUrl}/v1/api/user/registration`, {
-      method: "post",
-      body: JSON.stringify({ username: user.username, lastName: user.lastName, firstName: user.firstName, email: user.email, password: user.password }),
-      headers: {'Content-Type': 'application/json'},
-    })
-    const response = await res.json();
-    if(response){
-      dispatch({type: 'openDialog', payload: 'login'});
-    } else {
-      setErrors(response.errors);
-    }
-  }
-
-  function arePasswordsEqual(){
-    return user.password === passwordRep;
+  const onSubmit = async (data) => {
+      let { res, response } = register(data);
+      console.log(res);
+      if(res.status === 200) {
+        
+        reset();
+        dispatch({type: 'openDialog', payload: 'login'});
+        // TODO close register popup and show success message
+      }
+      else {
+        (response.fieldErrors || []).forEach(e => setError(e.field, {message: e.message}));
+      }
   }
 
   return <Popup
@@ -61,68 +31,47 @@ const Register = (props) => {
       isAccount={props.isAccount}
       buttonTitle={props.buttonTitle}
       linkTitle={props.linkTitle}
-      onClick={handleSubmit}
+      onClick={handleSubmit(onSubmit)}
     >
-    <CssTextField
-      margin='none'
-      label='First Name'
-      type='text'
-      fullWidth
-      variant='standard'
-      sx={{ mt: '0px' }}
-      value={user.firstName}
-      onChange={e => setUser({ ...user, firstName: e.target.value })}
-    />
-    <CssTextField
-      margin='none'
-      label='Last Name'
-      type='text'
-      fullWidth
-      variant='standard'
-      sx={{ mt: '7px' }}
-      value={user.lastName}
-      onChange={e => setUser({ ...user, lastName: e.target.value })}
-    />
-    <CssTextField
-      margin='none'
-      label='Username'
-      type='text'
-      fullWidth
-      variant='standard'
-      sx={{ mt: '7px' }}
-      value={user.username}
-      onChange={e => setUser({ ...user, username: e.target.value })}
-    />
-    <CssTextField
-      margin='none'
-      label='Email'
-      type='email'
-      fullWidth
-      variant='standard'
-      sx={{ mt: '7px' }}
-      value={user.email}
-      onChange={e => setUser({ ...user, email: e.target.value })}
-    />
-    <CssTextField
-      margin='none'
-      label="Пароль"
-      type="password"
-      fullWidth
-      variant="standard"
-      sx={{ mt: '7px' }}
-      value={user.password}
-      onChange={e => setUser({ ...user, password: e.target.value })}
-    />
-    <CssTextField
-      margin='none'
-      label="Пароль повторіть"
-      type="password"
-      fullWidth
-      variant="standard"
-      sx={{ mt: '7px', mb: 3 }}
-      value={user.passwordRep}
-      onChange={e => setPasswordRep({ ...user, passwordRep: e.target.value })}
-    />
+      <FormInputText
+        name='firstName'
+        control={control}
+        rules={{ required: 'Username is required.'}}
+        muiProps={{label: 'First Name', type: 'text', sx:{ mt: '7px' }}}
+      />
+      <FormInputText
+        name='lastName'
+        control={control}
+        rules={{ required: 'Username is required.'}}
+        muiProps={{label: 'Last Name', type: 'text', sx:{ mt: '7px' }}}
+      />
+      <FormInputText
+        name='username'
+        control={control}
+        rules={{ required: 'Username is required.'}}
+        muiProps={{label: 'Username', type: 'text', sx:{ mt: '7px' }}}
+      />
+      <FormInputText
+        name='email'
+        control={control}
+        rules={{ required: 'Username is required.'}}
+        muiProps={{label: 'Email', type: 'email', sx:{ mt: '7px' }}}
+      />
+      <FormInputText
+        name='password'
+        control={control}
+        rules={{ required: 'Username is required.'}}
+        muiProps={{label: 'Пароль', type: 'password', sx:{ mt: '7px' }}}
+      />
+      <FormInputText
+        name='passwordRep'
+        control={control}
+        rules={{
+          required: 'Password confirm is required.',
+          validate: (v) => v === password || 'Passwords should match.'
+        }}
+        muiProps={{label: 'Повторіть пароль', type: 'password', sx:{ mt: '7px', mb: 3 }}}
+      />
   </Popup>
 };
 
