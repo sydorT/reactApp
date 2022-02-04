@@ -1,43 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { styled } from '@mui/material/styles';
 import styles from "./Login.module.css";
 import Popup from "./Popup";
-import { TextField } from "@mui/material";
+import FormInputText from "./../formInput/FormInputText";
 import Cookies from 'js-cookie';
 import { useHeader } from "../../providers/HeaderProvider.js";
 import { Controller, useForm } from "react-hook-form";
 
-const CssTextField = styled(TextField)({
-  '&label.Mui-focused': {
-    color: '#A1A1A1',
-  },
-  '& .MuiInput-underline:after': {
-    borderColor: '#E8E8E8',
-    borderWidth: '1px'
-  },
-  '& .MuiInput-underline:before': {
-    borderColor: '#E8E8E8',
-  },
-  '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-    borderColor: '#9C42E2',
-    borderWidth: '1px'
-  },
-  '& .MuiInput-underline.Mui-focused:after': {
-    borderColor: '#9C42E2',
-  },
-  '& .MuiInputLabel-root': {
-    color: '#A1A1A1',
-    fontSize: '14px',
-    fontWeight: 500
-  },
-  '& .MuiFormHelperText-root': {
-    color: '#E74C3C',
-    fontWeight: 600,
-    fontSize: '12px',
-    lineHeight: '14px',
-    marginTop: '8px'
-  }
-});
 
 const Login = (props) => {
   const [headerState, dispatch] = useHeader();
@@ -45,7 +13,7 @@ const Login = (props) => {
   const [errorUnauthorized, setErrorUnauthorized] = useState([]);
   const apiBaseUrl = '//ec2-54-161-136-170.compute-1.amazonaws.com:8082';
 
-  const { handleSubmit, formState: { errors }, reset, control } = useForm();
+  const { handleSubmit, formState: { errors }, reset, control, setError } = useForm();
   const onSubmit = (data) => {
     (async () => {
       const res = await fetch(`${apiBaseUrl}/v1/api/user/login`, {
@@ -54,7 +22,11 @@ const Login = (props) => {
         headers: {'Content-Type': 'application/json'},
       })
       const response = await res.json();
-      console.log(errors.username);
+
+      console.log(errors);
+
+
+
       if(response.token){
         Cookies.set('user', response.token);
         dispatch({type: 'authenticated'});
@@ -64,9 +36,15 @@ const Login = (props) => {
       else if (res.status === 401){
         setErrorUnauthorized('Invalid password or login');
       }
-      // else {
-      //   setErrors(response.fieldErrors || []);
-      // }
+
+      else {
+        // setErrors(response.fieldErrors || []);
+
+        (response.fieldErrors || []).forEach(e => {
+          // this adds server side errors to react hook form
+          setError(e.field, {message: e.message});
+        })
+      }
     })();
   };  
 
@@ -91,7 +69,21 @@ const Login = (props) => {
   >
     <div className={styles.errorUnauthorized}>{errorUnauthorized}</div>
 
-    <Controller
+    <FormInputText
+      name='username'
+      control={control}
+      rules={{ required: 'Username is required.'}}
+      muiProps={{label: 'Логін', type: 'text'}}
+    />
+
+    <FormInputText
+      name='password'
+      control={control}
+      rules={{ required: 'Password is required.'}}
+      muiProps={{label: 'Пароль', type: 'password'}}
+    />
+
+    {/* <Controller
         name={"username"}
         control={control}
         rules={{ required: true }}
@@ -129,7 +121,7 @@ const Login = (props) => {
             onChange={onChange}
           />
         )}
-      />
+      /> */}
   </Popup>
 };
 
