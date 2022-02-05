@@ -20,7 +20,6 @@ import AccountMenu from "./AccountMenu";
 import Logo from "./../../images/logo.svg";
 import BurgerMenu from "./../../images/burger-menu.svg";
 import BurgerMenuOpen from "./../../images/burger-menu-open.svg";
-import Avatar from "./../../images/avatar-header.png";
 import Notification from "./../../images/notification.svg";
 import Settings from "./../../images/settings.svg";
 
@@ -91,7 +90,7 @@ const Header = () => {
                   <Box className={styles.notification}>
                     <img src={Notification} alt="Notification icon" />
                   </Box>
-                  <AccountMenu />
+                  <AccountMenu sx={{width: 40, height: 40}} />
                 </Stack>
               </>) : 
               <Stack direction="row" spacing={1.5}>
@@ -123,7 +122,7 @@ const Header = () => {
             {headerState.isAuthorized ? (<>
               <Stack direction="row" alignItems='center' justifyContent='space-between' sx={{maxWidth: '312px', px: 3, pt: 4}}>
                 <Stack direction="row" alignItems='center'>
-                  <img src={Avatar} className={styles.profileImgAuth} alt="Profile avatar" />
+                  <AccountMenu sx={{width: 56, height: 56, mr: 2}}/>
                   <Box>
                     <Typography sx={{fontSize: 16, fontWeight: 600, color: 'secondary.main'}}>Максим Барцов</Typography>
                     <Typography sx={{fontSize: 14, fontWeight: 600, color: 'secondary.main'}}>126.41₽</Typography>

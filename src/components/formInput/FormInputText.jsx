@@ -21,10 +21,19 @@ const CssTextField = styled(TextField)({
   '& .MuiInput-underline.Mui-focused:after': {
     borderColor: '#9C42E2',
   },
+  '& .Mui-error.Mui-focused:after': {
+    borderColor: '#E74C3C',
+  },
   '& .MuiInputLabel-root': {
     color: '#A1A1A1',
     fontSize: '14px',
     fontWeight: 500
+  },
+  '& .MuiFormHelperText-root': {
+    color: '#E74C3C',
+    fontSize: '12px',
+    fontWeight: 600,
+    marginTop: '8px'
   }
 });
 
@@ -36,12 +45,13 @@ const FormInputText = ({ name, control, rules, muiProps }) => {
     render={({ field: { onChange, value }, fieldState}) => (
       <>
         <CssTextField
+          error={fieldState.error}
           {...muiProps}
           helperText={fieldState.error && fieldState.error.message}
           margin='none'
           fullWidth
           variant='standard'
-          sx={{ mt: '0px' }}
+          sx={{ mt: '7px' }}
           value={value || ''}
           onChange={onChange}
         />

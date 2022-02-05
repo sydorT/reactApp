@@ -65,15 +65,6 @@
   border-radius: 2px;
 }
 
-.profileImg {
-  width: 40px;
-}
-
-.profileImgAuth {
-  width: 56px;
-  margin-right: 16px;
-}
-
 .notificationAuth,
 .notification {
   display: flex;

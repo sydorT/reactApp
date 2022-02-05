@@ -7,6 +7,7 @@ const LinkMenu = (props) => {
     color={props.color}
     underline={props.underline}
     onClick={props.onClick}
+    sx={props.sx}
     >
       {props.children}
   </Link>;

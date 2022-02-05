@@ -58,18 +58,10 @@ const AuthDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const Popup = (props) => {
-  const [headerState, dispatch] = useHeader();
+  const [headerState,_] = useHeader();
   const theme = useTheme();
   const mediaSm = useMediaQuery(theme.breakpoints.down("sm"));
   const hideBackdrop = mediaSm ? true : false;
-
-  const linkDialog = () => {
-    if (headerState.isLoginOpen === true) {
-      dispatch({type: 'openDialog', payload: 'register'});
-    } else {
-      dispatch({type: 'openDialog', payload: 'login'});
-    }
-  };
 
   return <AuthDialog
       hideBackdrop={hideBackdrop}
@@ -119,7 +111,7 @@ const Popup = (props) => {
   
     <DialogContent>
       {props.children}
-      {props.forgotPassword && <MenuLink href='/' color='link' underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
+      {props.forgotPassword && <MenuLink href='/' color='link' sx={{display: 'block', mt: 3}} underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
       
       <Stack 
         direction='column'
@@ -129,7 +121,7 @@ const Popup = (props) => {
       > 
         <Stack direction='row' justifyContent='center' alignItems='center'>
           <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
-          <MenuLink onClick={linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
+          <MenuLink onClick={props.linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
         </Stack>
         <Button onClick={props.onClick} disabled={props.isSubmitDisabled} variant="contained">{props.buttonTitle}</Button>
       </Stack>

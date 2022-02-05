@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { register } from "./requests.js";
 
 const Register = (props) => {
-  const [_, dispatch] = useHeader();
+  const [headerState, dispatch] = useHeader();
   const { handleSubmit, reset, control, setError, watch, formState } = useForm();
   const password = watch('password');
   const [formError, setFormError] = useState();
@@ -29,6 +29,13 @@ const Register = (props) => {
       }
   }
 
+  const linkDialog = () => {
+    if (headerState.isRegisterOpen) {
+      resetForm();
+      dispatch({type: 'openDialog', payload: 'login'});
+    }
+  };
+
   function resetForm() {
     reset();
     setFormError(undefined);
@@ -46,19 +53,20 @@ const Register = (props) => {
       linkTitle={props.linkTitle}
       isSubmitDisabled={formState.isSubmitting}
       onClick={handleSubmit(onSubmit)}
+      linkDialog={linkDialog}
     >
       {formError ? <div className={styles.errorUnauthorized}>{formError}</div> : null }
       
       <FormInputText
         name='firstName'
         control={control}
-        rules={{ required: 'Username is required.'}}
+        rules={{ required: 'First Name is required.'}}
         muiProps={{label: 'First Name', type: 'text', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='lastName'
         control={control}
-        rules={{ required: 'Username is required.'}}
+        rules={{ required: 'Last Name is required.'}}
         muiProps={{label: 'Last Name', type: 'text', sx:{ mt: '7px' }}}
       />
       <FormInputText
@@ -70,13 +78,13 @@ const Register = (props) => {
       <FormInputText
         name='email'
         control={control}
-        rules={{ required: 'Username is required.'}}
+        rules={{ required: 'Email is required.'}}
         muiProps={{label: 'Email', type: 'email', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='password'
         control={control}
-        rules={{ required: 'Username is required.'}}
+        rules={{ required: 'Password is required.'}}
         muiProps={{label: 'Пароль', type: 'password', sx:{ mt: '7px' }}}
       />
       <FormInputText
@@ -86,7 +94,7 @@ const Register = (props) => {
           required: 'Password confirm is required.',
           validate: (v) => v === password || 'Passwords should match.'
         }}
-        muiProps={{label: 'Повторіть пароль', type: 'password', sx:{ mt: '7px', mb: 3 }}}
+        muiProps={{label: 'Подтвердите пароль', type: 'password', sx:{ mt: '7px', mb: 3 }}}
       />
   </Popup>
 };

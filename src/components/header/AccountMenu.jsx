@@ -12,8 +12,8 @@ import { useHeader } from "../../providers/HeaderProvider.js";
 import Logout from '@mui/icons-material/Logout';
 import AvatarImg from "./../../images/avatar-header.png";
 
-export default function AccountMenu() {
-  const [headerState, dispatch] = useHeader();
+export default function AccountMenu(props) {
+  const [_, dispatch] = useHeader();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -27,10 +27,11 @@ export default function AccountMenu() {
   };
   
   return (
-    <React.Fragment>
+    <>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="Account settings">
           <IconButton
+            sx={{p: 0}}
             onClick={handleClick}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
@@ -38,7 +39,8 @@ export default function AccountMenu() {
           >
             <Avatar
               src={AvatarImg}
-              sx={{ width: 40, height: 40 }}
+              // sx={{ width: 40, height: 40 }}
+              sx={props.sx}
             />
           </IconButton>
         </Tooltip>
@@ -85,6 +87,6 @@ export default function AccountMenu() {
           Logout
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </>
   );
 }

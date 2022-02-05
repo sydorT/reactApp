@@ -8,9 +8,9 @@ import { useForm } from "react-hook-form";
 import { login } from "./requests.js";
 
 const Login = (props) => {
-  const [_, dispatch] = useHeader();
+  const [headerState, dispatch] = useHeader();
   const [formError, setFormError] = useState();
-  const { handleSubmit, reset, control, setError } = useForm();
+  const { handleSubmit, reset, control, setError, formState } = useForm();
 
   const onSubmit = async (data) => {
     const response = await login(data);
@@ -32,6 +32,13 @@ const Login = (props) => {
     }
   };
 
+  const linkDialog = () => {
+    if (headerState.isLoginOpen) {
+      resetForm();
+      dispatch({type: 'openDialog', payload: 'register'});
+    }
+  };
+
   function resetForm() {
     reset();
     setFormError(undefined);
@@ -49,7 +56,9 @@ const Login = (props) => {
       linkTitle={props.linkTitle}
       forgotPassword
       isAccount={props.isAccount}
+      isSubmitDisabled={formState.isSubmitting}
       onClick={handleSubmit(onSubmit)}
+      linkDialog={linkDialog}
     >
       {formError ? (
         <div className={styles.errorUnauthorized}>{formError}</div>
