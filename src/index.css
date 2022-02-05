@@ -4,12 +4,15 @@
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
-  padding-bottom: env(safe-area-inset-bottom);
 }
 
 body.modal-open {
   position: fixed;
   width: 100%;
+}
+
+html.modal-open {
+  height: 100vh;
 }
 
 a {
