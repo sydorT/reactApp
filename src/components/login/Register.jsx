@@ -1,38 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Popup from "./Popup";
+import styles from "./Login.module.css";
 import { useHeader } from "../../providers/HeaderProvider.js";
 import FormInputText from "./../formInput/FormInputText";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { register } from "./requests.js";
 
 const Register = (props) => {
-  const [headerState, dispatch] = useHeader();
-  const { handleSubmit, reset, control, setError, watch } = useForm();
+  const [_, dispatch] = useHeader();
+  const { handleSubmit, reset, control, setError, watch, formState } = useForm();
   const password = watch('password');
+  const [formError, setFormError] = useState();
 
   const onSubmit = async (data) => {
-      let { res, response } = await register(data);
-      console.log(res);
-      if(res.status === 200) {
-        
+      const response = await register(data);
+      setFormError(undefined);
+
+      if(response.status === 200) {
         reset();
         dispatch({type: 'openDialog', payload: 'login'});
-        // TODO close register popup and show success message
       }
       else {
-        (response.fieldErrors || []).forEach(e => setError(e.field, {message: e.message}));
+        const data = await response.json();
+        (data.fieldErrors || []).forEach(e => setError(e.field, {message: e.message}));
+        if(data.message) {
+          setFormError(data.message);
+        }
       }
+  }
+
+  function resetForm() {
+    reset();
+    setFormError(undefined);
   }
 
   return <Popup
       open={props.open}
-      onClose={props.onClose}
+      onClose={() => {
+        resetForm();
+        props.onClose();
+      }}
       title={props.title}
       isAccount={props.isAccount}
       buttonTitle={props.buttonTitle}
       linkTitle={props.linkTitle}
+      isSubmitDisabled={formState.isSubmitting}
       onClick={handleSubmit(onSubmit)}
     >
+      {formError ? <div className={styles.errorUnauthorized}>{formError}</div> : null }
+      
       <FormInputText
         name='firstName'
         control={control}

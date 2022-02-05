@@ -83,59 +83,57 @@ const Popup = (props) => {
         margin: 'auto'
       }}
     >
-    <form>
-      <div className={styles.popupHeader}>
-        {!mediaSm ? (<>
-          {headerState.isLoginOpen === true
-            ? <div className={styles.authbgrLogin}></div>
-            : <div className={styles.authbgrRegister}></div>} 
-          
-          <Button
-            variant="textIcon"
-            startIcon={<img src={Arrow} className={styles.buttonArrow} alt="Arrow icon" />}
-            onClick={props.onClose}
-            >Close</Button>
-        </>) : null}
+    <div className={styles.popupHeader}>
+      {!mediaSm ? (<>
+        {headerState.isLoginOpen === true
+          ? <div className={styles.authbgrLogin}></div>
+          : <div className={styles.authbgrRegister}></div>} 
         
-        <Typography sx={{textAlign: 'center', fontWeight: 600, fontSize: '32px', lineHeight: '41px', mt: '35px', mb: 2, color: 'secondary.main', position: 'relative'}}>{props.title}</Typography>
+        <Button
+          variant="textIcon"
+          startIcon={<img src={Arrow} className={styles.buttonArrow} alt="Arrow icon" />}
+          onClick={props.onClose}
+          >Close</Button>
+      </>) : null}
+      
+      <Typography sx={{textAlign: 'center', fontWeight: 600, fontSize: '32px', lineHeight: '41px', mt: '35px', mb: 2, color: 'secondary.main', position: 'relative'}}>{props.title}</Typography>
 
-        <Stack direction='row' justifyContent='center' pb='20px'>
-          <IconButton>
-            <img src={Google} alt="Google icon" />
-          </IconButton>
-          <IconButton>
-            <img src={Fb} alt="Facebook icon" />
-          </IconButton>
-          <IconButton>
-            <img src={Vk} alt="Vkontakte icon" />
-          </IconButton>
-          <IconButton>
-            <img src={Tw} alt="Twitter icon" />
-          </IconButton>
-          <IconButton>
-            <img src={Inst} alt="Instagram icon" />
-          </IconButton>
+      <Stack direction='row' justifyContent='center' pb='20px'>
+        <IconButton>
+          <img src={Google} alt="Google icon" />
+        </IconButton>
+        <IconButton>
+          <img src={Fb} alt="Facebook icon" />
+        </IconButton>
+        <IconButton>
+          <img src={Vk} alt="Vkontakte icon" />
+        </IconButton>
+        <IconButton>
+          <img src={Tw} alt="Twitter icon" />
+        </IconButton>
+        <IconButton>
+          <img src={Inst} alt="Instagram icon" />
+        </IconButton>
+      </Stack>
+    </div>
+  
+    <DialogContent>
+      {props.children}
+      {props.forgotPassword && <MenuLink href='/' color='link' underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
+      
+      <Stack 
+        direction='column'
+        alignItems='center'
+        spacing={3}
+        sx={{position: 'relative', zIndex: '1', mt: 8}}
+      > 
+        <Stack direction='row' justifyContent='center' alignItems='center'>
+          <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
+          <MenuLink onClick={linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
         </Stack>
-      </div>
-    
-      <DialogContent>
-        {props.children}
-        {props.forgotPassword && <MenuLink href='/' color='link' underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
-        
-        <Stack 
-          direction='column'
-          alignItems='center'
-          spacing={3}
-          sx={{position: 'relative', zIndex: '1', mt: 8}}
-        > 
-          <Stack direction='row' justifyContent='center' alignItems='center'>
-            <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
-            <MenuLink onClick={linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
-          </Stack>
-          <Button onClick={props.onClick} variant="contained">{props.buttonTitle}</Button>
-        </Stack>
-      </DialogContent>
-    </form>
+        <Button onClick={props.onClick} disabled={props.isSubmitDisabled} variant="contained">{props.buttonTitle}</Button>
+      </Stack>
+    </DialogContent>
     
   </AuthDialog>;
 };
