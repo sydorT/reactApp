@@ -45,7 +45,6 @@ const Header = () => {
     if (headerState.isMenuOpen !== true) {
       document.body.classList.add('modal-open');
       root.classList.add('modal-open');
-      document.html.classList.add('modal-open');
     } else {
       document.body.classList.remove('modal-open');
       root.classList.remove('modal-open');
