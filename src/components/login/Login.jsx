@@ -14,10 +14,10 @@ const Login = (props) => {
 
   const onSubmit = async (data) => {
     const response = await login(data);
-    const data = await response.json();
+    const json = await response.json();
     setFormError(undefined);
 
-    if (data.token) {
+    if (json.token) {
       reset();
       Cookies.set("user", response.token);
       dispatch({ type: "authenticated" });
@@ -26,7 +26,7 @@ const Login = (props) => {
     } else if (response.status === 401) {
       setFormError("Invalid password or login");
     } else {
-      (data.fieldErrors || []).forEach((e) =>
+      (json.fieldErrors || []).forEach((e) =>
         setError(e.field, { message: e.message })
       );
     }
