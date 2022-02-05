@@ -29,7 +29,7 @@ const AuthDialog = styled(Dialog)(({ theme }) => ({
     maxHeight: 'calc(100% - 64px)',
     '@media (max-width: 599.98px)': {
       // height: '100%',
-      minHeight: 'calc(100vh - 80px)',
+      minHeight: '100%',
       margin: 0,
       borderRadius: 0,
       boxShadow: 'none',
