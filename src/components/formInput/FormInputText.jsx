@@ -45,7 +45,8 @@ const FormInputText = ({ name, control, rules, muiProps }) => {
     render={({ field: { onChange, value }, fieldState}) => (
       <>
         <CssTextField
-          error={fieldState.error ? true : false}
+          // error={fieldState.error ? true : false}
+          error={!!fieldState.error}
           {...muiProps}
           helperText={fieldState.error && fieldState.error.message}
           margin='none'

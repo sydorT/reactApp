@@ -71,7 +71,7 @@ const Popup = (props) => {
       transitionDuration={0}
       scroll='paper'
       sx={{
-        maxWidth: {sm: '442px', xs: '100%'},
+        maxWidth: {sm: '412px', xs: '100%'},
         margin: 'auto'
       }}
     >

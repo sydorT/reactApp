@@ -2,6 +2,7 @@ import { Route, Routes, Outlet } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import HomePage from "./pages/home/HomePage";
+import EmailPage from "./pages/email/EmailPage";
 import { ThemeProvider } from "@mui/material/styles";
 import { Container } from "@mui/material";
 import theme from "./theme";
@@ -15,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<HomePage />} />
-              <Route path="/profile" element={<div>Profile page</div>} />
+              <Route path="/email" element={<EmailPage />} />
             </Route>
           </Routes>
         </Container>
