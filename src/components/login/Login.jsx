@@ -6,30 +6,46 @@ import Cookies from "js-cookie";
 import { useHeader } from "../../providers/HeaderProvider.js";
 import { useForm } from "react-hook-form";
 import { login } from "./requests.js";
+import {useAuth} from '../../providers/AuthProvider'
 
 const Login = (props) => {
+  const { login } = useAuth();
   const [headerState, dispatch] = useHeader();
   const [formError, setFormError] = useState();
   const { handleSubmit, reset, control, setError, formState } = useForm();
 
   const onSubmit = async (data) => {
-    const response = await login(data);
-    const json = await response.json();
+    const result = await login(data);
     setFormError(undefined);
 
-    if (json.token) {
+    if(result.success){
       reset();
-      Cookies.set("user", response.token);
-      dispatch({ type: "authenticated" });
       dispatch({ type: "dialogClosed" });
       document.body.classList.remove("modal-open");
-    } else if (response.status === 401) {
-      setFormError("Invalid password or login");
-    } else {
-      (json.fieldErrors || []).forEach((e) =>
+    } else if(result.errro){
+      setFormError(result.error)
+    } else if(result.fieldErrors){
+      result.fieldErrors.forEach((e) =>
         setError(e.field, { message: e.message })
       );
     }
+
+    // const response = await login(data);
+    // const json = await response.json();
+    // setFormError(undefined);
+
+    // if (json.token) {
+    //   Cookies.set("token", json.token);
+    //   // dispatch({ type: "authenticated" });
+    //   dispatch({ type: "dialogClosed" });
+    //   document.body.classList.remove("modal-open");
+    // } else if (response.status === 401) {
+    //   setFormError("Invalid password or login");
+    // } else {
+    //   (json.fieldErrors || []).forEach((e) =>
+    //     setError(e.field, { message: e.message })
+    //   );
+    // }
   };
 
   const linkDialog = () => {

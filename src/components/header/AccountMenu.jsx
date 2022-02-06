@@ -8,11 +8,13 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Cookies from 'js-cookie';
 import { useHeader } from "../../providers/HeaderProvider.js";
+import { useAuth } from "../../providers/AuthProvider";
 
 import Logout from '@mui/icons-material/Logout';
 import AvatarImg from "./../../images/avatar-header.png";
 
 export default function AccountMenu(props) {
+  const { logout } = useAuth();
   const [_, dispatch] = useHeader();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -22,8 +24,7 @@ export default function AccountMenu(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
-    Cookies.remove('user');
-    dispatch({type: 'unauthorized'});
+    logout();
   };
   
   return (

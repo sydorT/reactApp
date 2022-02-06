@@ -37,18 +37,6 @@ function reducer(state, action) {
         isRegisterOpen: false,
       };
     }
-    case "authenticated": {
-      return {
-        ...state,
-        isAuthorized: true,
-      };
-    }
-    case "unauthorized": {
-      return {
-        ...state,
-        isAuthorized: false,
-      };
-    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -60,7 +48,6 @@ function HeaderProvider({ children }) {
     isMenuOpen: false,
     isLoginOpen: false,
     isRegisterOpen: false,
-    isAuthorized: false,
   };
   const [state, dispatch] = React.useReducer(reducer, defaultState);
 
