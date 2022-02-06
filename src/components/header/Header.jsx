@@ -86,7 +86,7 @@ const Header = () => {
                   <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Личный кабинет</MenuLink>
                 </>) : null}
               
-              <MenuLink href='/email' color='secondary' underline='none' variant='menuLinkHeader'>Email</MenuLink>
+              {/* <MenuLink href='/email' color='secondary' underline='none' variant='menuLinkHeader'>Email</MenuLink> */}
               <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Новости</MenuLink>
               <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Контакты</MenuLink>
               <MenuLink href='/' color='secondary' underline='none' variant='menuLinkHeader'>Правила</MenuLink>
