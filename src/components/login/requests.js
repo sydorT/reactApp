@@ -14,4 +14,11 @@ const register = (data) =>
     headers: { "Content-Type": "application/json" },
   });
 
-export { login, register };
+const getClient = (token) =>
+  fetch(`${apiBaseUrl}/v1/api/user/client`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export { login, register, getClient };

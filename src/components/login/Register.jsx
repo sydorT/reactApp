@@ -43,9 +43,9 @@ const Register = (props) => {
 
   return <Popup
       open={props.open}
-      onClose={() => {
+      onClose={(event, reason) => {
         resetForm();
-        props.onClose();
+        props.onClose(event, reason);
       }}
       title={props.title}
       isAccount={props.isAccount}

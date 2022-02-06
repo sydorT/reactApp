@@ -29,6 +29,17 @@ const theme = createTheme({
         lineHeight: "36px",
       },
     },
+    h3: {
+      fontSize: 28,
+      fontWeight: 600,
+      lineHeight: "34px",
+      color: "#232323",
+      textAlign: "center",
+      "@media (max-width: 599.98px)": {
+        fontSize: 22,
+        lineHeight: "26px",
+      },
+    },
     h4: {
       fontSize: 24,
       fontWeight: 600,

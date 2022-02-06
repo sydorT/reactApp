@@ -4,7 +4,7 @@ import Header from "./components/header/Header";
 import HomePage from "./pages/home/HomePage";
 import EmailPage from "./pages/email/EmailPage";
 import { ThemeProvider } from "@mui/material/styles";
-import { Container } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import theme from "./theme";
 import { HeaderProvider } from "./providers/HeaderProvider.js";
 
@@ -28,11 +28,20 @@ function App() {
 function Layout() {
   return (
     <>
-      <HeaderProvider>
-        <Header />
-      </HeaderProvider>
-      <Outlet />
-      <Footer />
+      <Stack
+        direction="column"
+        justifyContent="space-between"
+        sx={{ minHeight: "100vh" }}
+      >
+        <div>
+          <HeaderProvider>
+            <Header />
+          </HeaderProvider>
+          <Outlet />
+        </div>
+
+        <Footer />
+      </Stack>
     </>
   );
 }

@@ -65,7 +65,7 @@ const Popup = (props) => {
 
   return <AuthDialog
       hideBackdrop={hideBackdrop}
-      disableEscapeKeyDown={true}
+      disableEscapeKeyDown
       open={props.open}
       onClose={props.onClose}
       transitionDuration={0}

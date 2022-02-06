@@ -1,9 +1,12 @@
 import React from 'react';
+import { Container, Stack, Button, Typography, Box, Fade } from '@mui/material';
 
 export default function() {
   return (
     <>
-      <div>Email</div>
+      <Container maxWidth="lg">
+
+      </Container>
     </>
   )
 }
