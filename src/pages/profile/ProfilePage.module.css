@@ -1,0 +1,15 @@
+.emailIcon {
+  width: 64px;
+  margin-right: 33px;
+}
+
+.emailIconModal {
+  width: 83px;
+}
+
+@media (max-width: 599.98px) {
+  .emailIcon {
+    width: 38px;
+    margin-right: 29px;
+  }
+}

@@ -140,6 +140,7 @@ const theme = createTheme({
           style: {
             textTransform: "none",
             backgroundColor: "#9C42E2",
+            whiteSpace: "nowrap",
             "&:hover": {
               backgroundColor: "#8713e1",
             },

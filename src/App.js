@@ -3,6 +3,7 @@ import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import HomePage from "./pages/home/HomePage";
 import EmailPage from "./pages/email/EmailPage";
+import ProfilePage from "./pages/profile/ProfilePage";
 import { ThemeProvider } from "@mui/material/styles";
 import { Container, Stack } from "@mui/material";
 import theme from "./theme";
@@ -15,8 +16,9 @@ function App() {
         <Container maxWidth="false" disableGutters>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route path="/" element={<HomePage />} />
+              <Route index element={<HomePage />} />
               <Route path="/email" element={<EmailPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
             </Route>
           </Routes>
         </Container>
