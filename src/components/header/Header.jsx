@@ -30,17 +30,6 @@ const Header = () => {
   const menuMt = isAuthenticated ? '48px' : '92px';
   const menuJustifyContent = isAuthenticated ? 'flex-start' : 'space-between';
 
-  // const readCookie = () => {
-  //   const user = Cookies.get('token');
-  //   if (user) {
-  //     dispatch({type: 'authenticated'});
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   readCookie();
-  // }, []);  
-
   const toggleMenu = () => {
     const root = document.getElementsByTagName( 'html' )[0];
     dispatch({type: 'menuToggled'});

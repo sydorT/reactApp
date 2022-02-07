@@ -6,8 +6,6 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import Cookies from 'js-cookie';
-import { useHeader } from "../../providers/HeaderProvider.js";
 import { useAuth } from "../../providers/AuthProvider";
 
 import Logout from '@mui/icons-material/Logout';
@@ -15,14 +13,17 @@ import AvatarImg from "./../../images/avatar-header.png";
 
 export default function AccountMenu(props) {
   const { logout } = useAuth();
-  const [_, dispatch] = useHeader();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event, reason) => {
+    if (reason && reason === 'backdropClick') {
+      return;
+    }
     setAnchorEl(null);
     logout();
   };
@@ -40,7 +41,6 @@ export default function AccountMenu(props) {
           >
             <Avatar
               src={AvatarImg}
-              // sx={{ width: 40, height: 40 }}
               sx={props.sx}
             />
           </IconButton>
@@ -51,7 +51,6 @@ export default function AccountMenu(props) {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -81,7 +80,7 @@ export default function AccountMenu(props) {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+        <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

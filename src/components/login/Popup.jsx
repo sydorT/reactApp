@@ -8,18 +8,18 @@ import {
   Button,
   DialogContent,
   Typography,
-  IconButton,
+  // IconButton,
   useTheme,
   useMediaQuery
 } from "@mui/material";
 import { useHeader } from "../../providers/HeaderProvider";
 
 import Arrow from "./../../images/accordion-arrow.svg";
-import Google from "./../../images/google-auth-ic.svg";
-import Fb from "./../../images/fb-auth-ic.svg";
-import Vk from "./../../images/vk-auth-ic.svg";
-import Tw from "./../../images/tw-auth-ic.svg";
-import Inst from "./../../images/inst-auth-ic.svg";
+// import Google from "./../../images/google-auth-ic.svg";
+// import Fb from "./../../images/fb-auth-ic.svg";
+// import Vk from "./../../images/vk-auth-ic.svg";
+// import Tw from "./../../images/tw-auth-ic.svg";
+// import Inst from "./../../images/inst-auth-ic.svg";
 
 const AuthDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialog-paper': {
@@ -42,7 +42,8 @@ const AuthDialog = styled(Dialog)(({ theme }) => ({
     },
   },  
   '& .MuiButton-startIcon': {
-    margin: '0 4px 0 0'
+    margin: '0 4px 0 0',
+    flexShrink: '0',
   },
   '& .MuiDialogContent-root': {
     padding: '20px 55px 48px',
@@ -61,10 +62,9 @@ const Popup = (props) => {
   const [headerState,_] = useHeader();
   const theme = useTheme();
   const mediaSm = useMediaQuery(theme.breakpoints.down("sm"));
-  const hideBackdrop = mediaSm ? true : false;
 
   return <AuthDialog
-      hideBackdrop={hideBackdrop}
+      hideBackdrop={mediaSm}
       disableEscapeKeyDown
       open={props.open}
       onClose={props.onClose}
@@ -85,12 +85,12 @@ const Popup = (props) => {
           variant="textIcon"
           startIcon={<img src={Arrow} className={styles.buttonArrow} alt="Arrow icon" />}
           onClick={props.onClose}
-          >Close</Button>
+          >Закрыть</Button>
       </>) : null}
       
       <Typography sx={{textAlign: 'center', fontWeight: 600, fontSize: '32px', lineHeight: '41px', mt: '35px', mb: 2, color: 'secondary.main', position: 'relative'}}>{props.title}</Typography>
 
-      <Stack direction='row' justifyContent='center' pb='20px'>
+      {/* <Stack direction='row' justifyContent='center' pb='20px'>
         <IconButton>
           <img src={Google} alt="Google icon" />
         </IconButton>
@@ -106,25 +106,27 @@ const Popup = (props) => {
         <IconButton>
           <img src={Inst} alt="Instagram icon" />
         </IconButton>
-      </Stack>
+      </Stack> */}
     </div>
   
     <DialogContent>
-      {props.children}
-      {props.forgotPassword && <MenuLink href='/' color='link' sx={{display: 'block', mt: 3}} underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
-      
-      <Stack 
-        direction='column'
-        alignItems='center'
-        spacing={3}
-        sx={{position: 'relative', zIndex: '1', mt: 8}}
-      > 
-        <Stack direction='row' justifyContent='center' alignItems='center'>
-          <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
-          <MenuLink onClick={props.linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
+      <form onSubmit={props.onSubmit}>
+        {props.children}
+        {props.forgotPassword && <MenuLink href='/' color='link' sx={{display: 'block', mt: 3}} underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
+        
+        <Stack 
+          direction='column'
+          alignItems='center'
+          spacing={3}
+          sx={{position: 'relative', zIndex: '1', mt: 8}}
+        > 
+          <Stack direction='row' justifyContent='center' alignItems='center'>
+            <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
+            <MenuLink onClick={props.linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
+          </Stack>
+          <Button type="submit" disabled={props.isSubmitDisabled} variant="contained">{props.buttonTitle}</Button>
         </Stack>
-        <Button onClick={props.onClick} disabled={props.isSubmitDisabled} variant="contained">{props.buttonTitle}</Button>
-      </Stack>
+      </form>
     </DialogContent>
     
   </AuthDialog>;

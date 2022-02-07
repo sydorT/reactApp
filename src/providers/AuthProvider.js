@@ -38,7 +38,7 @@ function AuthProvider(props) {
 
       return { success: true };
     } else if (response.status === 401) {
-      return { success: false, error: "Invalid password or login" };
+      return { success: false, error: "Неверный пароль или логин" };
     } else {
       return { success: false, fieldErrors: json.fieldErrors || [] };
     }

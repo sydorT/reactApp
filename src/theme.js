@@ -16,8 +16,6 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Inter, sans-serif",
-    fontSize: 16,
     h2: {
       fontSize: 36,
       fontWeight: 600,

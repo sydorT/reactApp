@@ -1,6 +1,7 @@
 .buttonArrow {
   width: 11px;
   transform: rotate(90deg);
+  flex-shrink: 0;
 }
 
 .popupHeader {

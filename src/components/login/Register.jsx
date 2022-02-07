@@ -52,7 +52,7 @@ const Register = (props) => {
       buttonTitle={props.buttonTitle}
       linkTitle={props.linkTitle}
       isSubmitDisabled={formState.isSubmitting}
-      onClick={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
       linkDialog={linkDialog}
     >
       {formError ? <div className={styles.errorUnauthorized}>{formError}</div> : null }
@@ -60,39 +60,39 @@ const Register = (props) => {
       <FormInputText
         name='firstName'
         control={control}
-        rules={{ required: 'First Name is required.'}}
-        muiProps={{label: 'First Name', type: 'text', sx:{ mt: '7px' }}}
+        rules={{ required: 'Требуется имя.'}}
+        muiProps={{label: 'Имя', type: 'text', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='lastName'
         control={control}
-        rules={{ required: 'Last Name is required.'}}
-        muiProps={{label: 'Last Name', type: 'text', sx:{ mt: '7px' }}}
+        rules={{ required: 'Требуется фамилия.'}}
+        muiProps={{label: 'Фамилия', type: 'text', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='username'
         control={control}
-        rules={{ required: 'Username is required.'}}
-        muiProps={{label: 'Username', type: 'text', sx:{ mt: '7px' }}}
+        rules={{ required: 'Требуется никнейм.'}}
+        muiProps={{label: 'Никнейм', type: 'text', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='email'
         control={control}
-        rules={{ required: 'Email is required.'}}
-        muiProps={{label: 'Email', type: 'email', sx:{ mt: '7px' }}}
+        rules={{ required: 'Требуется емейл.'}}
+        muiProps={{label: 'Емейл', type: 'email', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='password'
         control={control}
-        rules={{ required: 'Password is required.'}}
+        rules={{ required: 'Требуется пароль.'}}
         muiProps={{label: 'Пароль', type: 'password', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='passwordRep'
         control={control}
         rules={{
-          required: 'Password confirm is required.',
-          validate: (v) => v === password || 'Passwords should match.'
+          required: 'Требуется подтверждение пароля.',
+          validate: (v) => v === password || 'Пароли должны совпадать.'
         }}
         muiProps={{label: 'Подтвердите пароль', type: 'password', sx:{ mt: '7px', mb: 3 }}}
       />
