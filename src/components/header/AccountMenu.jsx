@@ -84,7 +84,7 @@ export default function AccountMenu(props) {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          Выйти
         </MenuItem>
       </Menu>
     </>
