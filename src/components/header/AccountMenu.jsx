@@ -22,9 +22,9 @@ export default function AccountMenu(props) {
 
   const handleClose = (event, reason) => {
     if (reason && reason === 'backdropClick') {
+      setAnchorEl(null);
       return;
     }
-    setAnchorEl(null);
     logout();
   };
   

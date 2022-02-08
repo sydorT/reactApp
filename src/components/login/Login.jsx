@@ -64,14 +64,14 @@ const Login = (props) => {
       <FormInputText
         name="username"
         control={control}
-        rules={{ required: "Требуется имя пользователя." }}
+        rules={{ required: "Требуется имя пользователя" }}
         muiProps={{ label: "Логин", type: "text" }}
       />
 
       <FormInputText
         name="password"
         control={control}
-        rules={{ required: "Требуется пароль." }}
+        rules={{ required: "Требуется пароль" }}
         muiProps={{ label: "Пароль", type: "password" }}
       />
     </Popup>

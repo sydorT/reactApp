@@ -60,39 +60,39 @@ const Register = (props) => {
       <FormInputText
         name='firstName'
         control={control}
-        rules={{ required: 'Требуется имя.'}}
+        rules={{ required: 'Требуется имя'}}
         muiProps={{label: 'Имя', type: 'text', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='lastName'
         control={control}
-        rules={{ required: 'Требуется фамилия.'}}
+        rules={{ required: 'Требуется фамилия'}}
         muiProps={{label: 'Фамилия', type: 'text', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='username'
         control={control}
-        rules={{ required: 'Требуется никнейм.'}}
+        rules={{ required: 'Требуется никнейм'}}
         muiProps={{label: 'Никнейм', type: 'text', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='email'
         control={control}
-        rules={{ required: 'Требуется емейл.'}}
+        rules={{ required: 'Требуется емейл'}}
         muiProps={{label: 'Емейл', type: 'email', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='password'
         control={control}
-        rules={{ required: 'Требуется пароль.'}}
+        rules={{ required: 'Требуется пароль'}}
         muiProps={{label: 'Пароль', type: 'password', sx:{ mt: '7px' }}}
       />
       <FormInputText
         name='passwordRep'
         control={control}
         rules={{
-          required: 'Требуется подтверждение пароля.',
-          validate: (v) => v === password || 'Пароли должны совпадать.'
+          required: 'Требуется подтверждение пароля',
+          validate: (v) => v === password || 'Пароли должны совпадать'
         }}
         muiProps={{label: 'Подтвердите пароль', type: 'password', sx:{ mt: '7px', mb: 3 }}}
       />
