@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styles from "./EmailPage.module.css";
+import styles from "./EmailConfirmationPage.module.css";
 import { Container, Stack, Button, Typography } from '@mui/material';
-import MenuLink from "./../../components/header/MenuLink";
+import MenuLink from "../../components/header/MenuLink";
 
 import EmailWithMark from "./../../images/email-exclamation-mark.svg";
 import EmailSuccess from "./../../images/email-success.svg";

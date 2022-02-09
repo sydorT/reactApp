@@ -179,19 +179,10 @@ const Header = () => {
             <Login
               open={headerState.isLoginOpen}
               onClose={handleClose}
-              title='Авторизация'
-              isAccount='Еще нет аккаунта?'
-              buttonTitle='Войти'
-              linkTitle='Регистрация'
-              forgotPassword
             />
             <Register
               open={headerState.isRegisterOpen}
               onClose={handleClose}
-              title='Регистрация'
-              isAccount='Уже есть аккаунт?'
-              buttonTitle='Зарегистрироваться'
-              linkTitle='Войти'
             /> 
           </> : null}
       </Container>

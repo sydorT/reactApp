@@ -7,6 +7,17 @@
   width: 83px;
 }
 
+.emailPopupBgr {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-size: 100%;
+  top: 0;
+  right: 0;
+  background: url('../../images/modal-bgr.svg') no-repeat;
+  height: 273px;
+}
+
 @media (max-width: 599.98px) {
   .emailIcon {
     width: 38px;

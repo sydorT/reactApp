@@ -1,25 +1,5 @@
-import React from 'react';
-import styles from "./Login.module.css";
 import { styled } from '@mui/material/styles';
-import MenuLink from "./../header/MenuLink";
-import {
-  Dialog,
-  Stack,
-  Button,
-  DialogContent,
-  Typography,
-  // IconButton,
-  useTheme,
-  useMediaQuery
-} from "@mui/material";
-import { useHeader } from "../../providers/HeaderProvider";
-
-import Arrow from "./../../images/accordion-arrow.svg";
-// import Google from "./../../images/google-auth-ic.svg";
-// import Fb from "./../../images/fb-auth-ic.svg";
-// import Vk from "./../../images/vk-auth-ic.svg";
-// import Tw from "./../../images/tw-auth-ic.svg";
-// import Inst from "./../../images/inst-auth-ic.svg";
+import { Dialog, useTheme, useMediaQuery } from "@mui/material";
 
 const AuthDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialog-paper': {
@@ -34,6 +14,7 @@ const AuthDialog = styled(Dialog)(({ theme }) => ({
       boxShadow: 'none',
       overflowY: 'scroll',
       maxHeight: '100%',
+      width: '100%'
     },
   },
   '&.MuiModal-root.MuiDialog-root': {
@@ -59,7 +40,6 @@ const AuthDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const Popup = (props) => {
-  const [headerState,_] = useHeader();
   const theme = useTheme();
   const mediaSm = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -71,64 +51,11 @@ const Popup = (props) => {
       transitionDuration={0}
       scroll='paper'
       sx={{
-        maxWidth: {sm: '412px', xs: '100%'},
+        maxWidth: {sm: `${props.maxWidth}`, xs: '100%'},
         margin: 'auto'
       }}
     >
-    <div className={styles.popupHeader}>
-      {!mediaSm ? (<>
-        {headerState.isLoginOpen === true
-          ? <div className={styles.authbgrLogin}></div>
-          : <div className={styles.authbgrRegister}></div>} 
-        
-        <Button
-          variant="textIcon"
-          startIcon={<img src={Arrow} className={styles.buttonArrow} alt="Arrow icon" />}
-          onClick={props.onClose}
-          >Закрыть</Button>
-      </>) : null}
-      
-      <Typography sx={{textAlign: 'center', fontWeight: 600, fontSize: '32px', lineHeight: '41px', mt: '35px', mb: 2, color: 'secondary.main', position: 'relative'}}>{props.title}</Typography>
-
-      {/* <Stack direction='row' justifyContent='center' pb='20px'>
-        <IconButton>
-          <img src={Google} alt="Google icon" />
-        </IconButton>
-        <IconButton>
-          <img src={Fb} alt="Facebook icon" />
-        </IconButton>
-        <IconButton>
-          <img src={Vk} alt="Vkontakte icon" />
-        </IconButton>
-        <IconButton>
-          <img src={Tw} alt="Twitter icon" />
-        </IconButton>
-        <IconButton>
-          <img src={Inst} alt="Instagram icon" />
-        </IconButton>
-      </Stack> */}
-    </div>
-  
-    <DialogContent>
-      <form onSubmit={props.onSubmit}>
-        {props.children}
-        {props.forgotPassword && <MenuLink href='/' color='link' sx={{display: 'block', mt: 3}} underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}
-        
-        <Stack 
-          direction='column'
-          alignItems='center'
-          spacing={3}
-          sx={{position: 'relative', zIndex: '1', mt: 8}}
-        > 
-          <Stack direction='row' justifyContent='center' alignItems='center'>
-            <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>{props.isAccount}</Typography>
-            <MenuLink onClick={props.linkDialog} color='link' underline='hover' variant='linkSmall'>{props.linkTitle}</MenuLink>
-          </Stack>
-          <Button type="submit" disabled={props.isSubmitDisabled} variant="contained">{props.buttonTitle}</Button>
-        </Stack>
-      </form>
-    </DialogContent>
-    
+      {props.children}
   </AuthDialog>;
 };
 

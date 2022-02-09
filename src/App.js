@@ -2,7 +2,7 @@ import { Route, Routes, Outlet } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import HomePage from "./pages/home/HomePage";
-import EmailPage from "./pages/email/EmailPage";
+import EmailConfirmationPage from "./pages/email/EmailConfirmationPage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import { ThemeProvider } from "@mui/material/styles";
 import { Container, Stack } from "@mui/material";
@@ -17,7 +17,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
-              <Route path="/email" element={<EmailPage />} />
+              <Route
+                path="/email-confirmation"
+                element={<EmailConfirmationPage />}
+              />
               <Route path="/profile" element={<ProfilePage />} />
             </Route>
           </Routes>
