@@ -7,9 +7,9 @@ import EmailWithMark from "./../../images/email-exclamation-mark.svg";
 import EmailSuccess from "./../../images/email-success.svg";
 
 export default function() {
-  const approved = false;
+  const approved = true;
   const initialState = 59;
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [seconds, setSeconds] = useState(initialState);
 
   useEffect(() => {
@@ -17,7 +17,6 @@ export default function() {
       const timer = setInterval(() => {
         if (seconds > 0) {
           setSeconds(seconds => seconds - 1);
-          console.log(seconds);
         } else {
           setVisible(false);
           setSeconds(initialState);

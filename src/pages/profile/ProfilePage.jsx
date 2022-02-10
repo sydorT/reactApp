@@ -36,7 +36,7 @@ export default function() {
         >
           <img src={EmailWithMark} className={styles.emailIcon} alt="Email icon" />
           <Typography variant='body1' sx={{fontSize: { sm: '16px', xs: '12px'}}} component="p">Вы не подтвердили электронную почту. Чтобы получить доступ к функциям Crowd Marketing<br />
-            Вам нужно <MenuLink href='/email' underline='hover' color='link' sx={{fontWeight: 700}}>подтвердить электронную почту</MenuLink>.</Typography>
+            Вам нужно <MenuLink href='/email-confirmation' underline='hover' color='link' sx={{fontWeight: 700}}>подтвердить электронную почту</MenuLink>.</Typography>
         </Stack>
       </Container>
 
@@ -58,7 +58,7 @@ export default function() {
         >
           <img src={EmailWithMark} className={styles.emailIconModal} alt="Email icon" />
           <Typography variant='body1' component="p" sx={{fontSize: {sm: '16px', xs: '14px'}, lineHeight: {sm: '20px', xs: '18px'}, textAlign: 'center', mt: '43px', mb: '48px'}}>Чтобы воспользоваться этой функцией,<br />
-            Вам нужно <MenuLink href='/email' underline='hover' color='link' sx={{fontWeight: 700}}>подтвердить электронную почту</MenuLink></Typography>
+            Вам нужно <MenuLink href='/email-confirmation' underline='hover' color='link' sx={{fontWeight: 700}}>подтвердить электронную почту</MenuLink></Typography>
 
           <Button onClick={handleClose} variant="contained">Закрыть</Button>
         </Stack>

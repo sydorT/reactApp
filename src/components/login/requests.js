@@ -1,4 +1,5 @@
 const apiBaseUrl = "//ec2-54-161-136-170.compute-1.amazonaws.com:8082";
+// const apiBaseUrl = "https://backend.crowd-marketing.xyz:8082";
 
 const login = (data) =>
   fetch(`${apiBaseUrl}/v1/api/user/login`, {
