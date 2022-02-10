@@ -7,7 +7,7 @@ import EmailWithMark from "./../../images/email-exclamation-mark.svg";
 import EmailSuccess from "./../../images/email-success.svg";
 
 export default function() {
-  const approved = true;
+  const approved = false;
   const initialState = 59;
   const [visible, setVisible] = useState(true);
   const [seconds, setSeconds] = useState(initialState);
