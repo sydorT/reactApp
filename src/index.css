@@ -1,0 +1,30 @@
+@import-normalize; /* bring in normalize.css styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+body.modal-open {
+  position: fixed;
+  width: 100%;
+}
+
+html.modal-open {
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.MuiPaper-root.MuiDrawer-paper {
+  height: calc(100% - 80px);
+  top: 80px;
+  width: 100%;
+}

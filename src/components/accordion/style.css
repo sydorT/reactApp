@@ -1,0 +1,9 @@
+.MuiPaper-root.MuiAccordion-root.Mui-expanded:last-of-type {
+	margin-bottom: 32px;
+}
+
+@media (max-width: 599.98px) {
+	.MuiPaper-root.MuiAccordion-root.Mui-expanded:last-of-type {
+		margin-bottom: 24px;
+	}
+}

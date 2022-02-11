@@ -1,0 +1,42 @@
+.buttonArrow {
+  width: 11px;
+  transform: rotate(90deg);
+  flex-shrink: 0;
+}
+
+.popupHeader {
+  padding: 35px 55px 0;
+}
+
+.authbgrLogin,
+.authbgrRegister {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-size: 100%;
+}
+
+.authbgrLogin {
+  bottom: 0;
+  background: url('../../images/auth-bgr.svg') no-repeat;
+  height: 352px;
+}
+
+.authbgrRegister{
+  top: 0;
+  right: 0;
+  background: url('../../images/auth-bgr-register.svg') no-repeat;
+  height: 365px;
+}
+
+.errorUnauthorized {
+  color: #E74C3C;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .popupHeader {
+    padding: 0 15px 0;
+  }
+}

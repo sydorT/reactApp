@@ -1,0 +1,136 @@
+.header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 148px;
+}
+
+.navWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav {
+  margin-right: 6vw;
+}
+
+.separator {
+  color: #737373;
+}
+
+.burgerIcon {
+  display: none;
+  cursor: pointer;
+}
+
+.modalBgr,
+.modalBgrAuth  {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+.modalBgr {
+  background-image: url('../../images/mobile-menu-bgr.svg');
+  background-position-x: 0;
+  background-position-y: 300px;
+}
+
+.modalBgrAuth {
+  background-image: url('../../images/mobile-menu-bgr2.svg');
+  background-position: center 200px;
+}
+
+.linkMobile {
+  position: relative;
+}
+
+.linkMobile::before {
+  content: '';
+  position: absolute;
+  left: -26px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 2px;
+  background-color: #9C42E2;
+  border-radius: 2px;
+}
+
+.notificationAuth,
+.notification {
+  display: flex;
+  position: relative;
+}
+
+.notification {
+  margin-right: 25px;
+  margin-left: 18px;
+}
+
+.notificationAuth::before,
+.notification::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #9C42E2;
+}
+
+.notificationAuth {
+  margin-left: 27px;
+}
+
+.notificationAuth img {
+  width: 20px;
+}
+
+.notificationAuth::before {
+  width: 7px;
+  height: 7px;
+}
+
+.settingsAuth {
+  width: 22px;
+}
+
+@media (max-width: 1024.98px) {
+  .nav {
+    margin-right: 3vw;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navWrapper {
+    display: none;
+  }
+  .burgerIcon {
+    position: relative;
+    display: block;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 375.98px) {
+  .modalBgr {
+    background-position-x: -174px;
+  }
+}
+
+@media (max-width: 320px) {
+  .modalBgr {
+    background-position-x: left;
+    background-position: contain;
+  }
+}
