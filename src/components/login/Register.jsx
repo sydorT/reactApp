@@ -22,6 +22,7 @@ import {
 // import Tw from "./../../images/tw-auth-ic.svg";
 // import Inst from "./../../images/inst-auth-ic.svg";
 import Arrow from "./../../images/accordion-arrow.svg";
+import {useAuth} from "../../providers/AuthProvider";
 
 const Register = (props) => {
   const theme = useTheme();
@@ -30,21 +31,22 @@ const Register = (props) => {
   const { handleSubmit, reset, control, setError, watch, formState } = useForm();
   const password = watch('password');
   const [formError, setFormError] = useState();
+  const { register } = useAuth();
 
   const onSubmit = async (data) => {
-    const response = await register(data);
+    const result = await register(data);
     setFormError(undefined);
 
-    if(response.status === 200) {
+    if(result.success) {
       reset();
-      dispatch({type: 'openDialog', payload: 'login'});
-    }
-    else {
-      const data = await response.json();
-      (data.fieldErrors || []).forEach(e => setError(e.field, {message: e.message}));
-      if(data.message) {
-        setFormError(data.message);
-      }
+      dispatch({ type: "dialogClosed" });
+      document.body.classList.remove("modal-open");
+    } else if(result.error){
+      setFormError(result.error)
+    } else if(result.fieldErrors) {
+      result.fieldErrors.forEach((e) =>
+          setError(e.field, { message: e.message })
+      );
     }
   }
 
@@ -108,30 +110,12 @@ const Register = (props) => {
     <DialogContent>
       <form onSubmit={handleSubmit(onSubmit)}>
         {formError ? <div className={styles.errorUnauthorized}>{formError}</div> : null }
-        
-        <FormInputText
-          name='firstName'
-          control={control}
-          rules={{ required: 'Требуется имя'}}
-          muiProps={{label: 'Имя', type: 'text', sx:{ mt: '7px' }}}
-        />
-        <FormInputText
-          name='lastName'
-          control={control}
-          rules={{ required: 'Требуется фамилия'}}
-          muiProps={{label: 'Фамилия', type: 'text', sx:{ mt: '7px' }}}
-        />
-        <FormInputText
-          name='username'
-          control={control}
-          rules={{ required: 'Требуется никнейм'}}
-          muiProps={{label: 'Никнейм', type: 'text', sx:{ mt: '7px' }}}
-        />
+
         <FormInputText
           name='email'
           control={control}
           rules={{ required: 'Требуется емейл'}}
-          muiProps={{label: 'Емейл', type: 'email', sx:{ mt: '7px' }}}
+          muiProps={{label: 'Email', type: 'email', sx:{ mt: '7px' }}}
         />
         <FormInputText
           name='password'
@@ -146,7 +130,7 @@ const Register = (props) => {
             required: 'Требуется подтверждение пароля',
             validate: (v) => v === password || 'Пароли должны совпадать'
           }}
-          muiProps={{label: 'Подтвердите пароль', type: 'password', sx:{ mt: '7px', mb: 3 }}}
+          muiProps={{label: 'Повторите пароль', type: 'password', sx:{ mt: '7px', mb: 3 }}}
         />
 
         {props.forgotPassword && <MenuLink href='/' color='link' sx={{display: 'block', mt: 3}} underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>}

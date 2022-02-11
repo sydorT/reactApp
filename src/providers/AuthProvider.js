@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getClient, login as loginRequest } from "../components/login/requests";
+import { getClient, login as loginRequest, register as registerRequest } from "../components/login/requests";
 import Cookies from "js-cookie";
 
 const AuthContext = React.createContext();
@@ -44,7 +44,17 @@ function AuthProvider(props) {
     }
   };
 
-  const register = () => {}; // register the user
+  const register = async (data) => {
+    const response = await registerRequest(data);
+    const json = await response.json();
+    if (json.token) {
+      Cookies.set("token", json.token);
+      fetchUser();
+      return { success: true };
+    } else {
+      return { success: false, fieldErrors: json.fieldErrors || [] };
+    }
+  };
 
   const logout = () => {
     Cookies.remove("token");

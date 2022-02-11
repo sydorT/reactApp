@@ -24,12 +24,18 @@ import {
 import Arrow from "./../../images/accordion-arrow.svg";
 
 const Login = (props) => {
+  const windowTitle = "Вход";
+  const closeBtnName = "Закрыть";
+  const emailLabelName = "Email";
+  const passwordLabelName = "Пароль";
+  const submitBtnName = "Войти";
+
   const theme = useTheme();
   const mediaSm = useMediaQuery(theme.breakpoints.down("sm"));
-  const { login } = useAuth();
   const [headerState, dispatch] = useHeader();
   const [formError, setFormError] = useState();
   const { handleSubmit, reset, control, setError, formState } = useForm();
+  const { login } = useAuth();
 
   const onSubmit = async (data) => {
     const result = await login(data);
@@ -81,11 +87,17 @@ const Login = (props) => {
           <Button
             variant="textIcon"
             startIcon={<img src={Arrow} className={styles.buttonArrow} alt="Arrow icon" />}
-            onClick={props.onClose}
-            >Закрыть</Button>
+            onClick={props.onClose}>{closeBtnName}</Button>
         </>) : null}
         
-        <Typography sx={{textAlign: 'center', fontWeight: 600, fontSize: '32px', lineHeight: '41px', mt: '35px', mb: 2, color: 'secondary.main', position: 'relative'}}>Авторизация</Typography>
+        <Typography
+            sx={{textAlign: 'center',
+              fontWeight: 600,
+              fontSize: '32px',
+              lineHeight: '41px',
+              mt: '35px', mb: 2,
+              color: 'secondary.main',
+              position: 'relative'}}>{windowTitle}</Typography>
 
         {/* <Stack direction='row' justifyContent='center' pb='20px'>
           <IconButton>
@@ -113,17 +125,17 @@ const Login = (props) => {
           ) : null}
 
           <FormInputText
-            name="username"
+            name="email"
             control={control}
             rules={{ required: "Требуется имя пользователя" }}
-            muiProps={{ label: "Логин", type: "text" }}
+            muiProps={{ label: emailLabelName, type: "email" }}
           />
 
           <FormInputText
             name="password"
             control={control}
             rules={{ required: "Требуется пароль" }}
-            muiProps={{ label: "Пароль", type: "password" }}
+            muiProps={{ label: passwordLabelName, type: "password" }}
           />
 
           <MenuLink href='/' color='link' sx={{display: 'block', mt: 3}} underline='hover' variant='linkSmall'>Забыли пароль?</MenuLink>
@@ -138,7 +150,7 @@ const Login = (props) => {
               <Typography sx={{fontWeight: 500, fontSize: '12px', color: 'secondary.main', mr: '3px'}}>Еще нет аккаунта?</Typography>
               <MenuLink onClick={linkDialog} color='link' underline='hover' variant='linkSmall'>Регистрация</MenuLink>
             </Stack>
-            <Button type="submit" disabled={props.isSubmitDisabled} variant="contained">Войти</Button>
+            <Button type="submit" disabled={props.isSubmitDisabled} variant="contained">{submitBtnName}</Button>
           </Stack>
         </form>
       </DialogContent>
